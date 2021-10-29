@@ -1,0 +1,1125 @@
+fileFormatVersion: 2
+guid: 4eddd8e8bf92c0a4dab5170a7e93a48a
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 327422084053003785
+    second: sactx-1024x2048-ETC2-ProgressBars_Common_Atlas-2a16259b_0
+  - first:
+      213: -1227279482594285724
+    second: sactx-1024x2048-ETC2-ProgressBars_Common_Atlas-2a16259b_1
+  - first:
+      213: -3192700529923448216
+    second: sactx-1024x2048-ETC2-ProgressBars_Common_Atlas-2a16259b_2
+  - first:
+      213: -2409068264522825131
+    second: sactx-1024x2048-ETC2-ProgressBars_Common_Atlas-2a16259b_3
+  - first:
+      213: -602251760622077625
+    second: sactx-1024x2048-ETC2-ProgressBars_Common_Atlas-2a16259b_4
+  - first:
+      213: -3789822830473842166
+    second: sactx-1024x2048-ETC2-ProgressBars_Common_Atlas-2a16259b_5
+  - first:
+      213: -2154127162741197120
+    second: sactx-1024x2048-ETC2-ProgressBars_Common_Atlas-2a16259b_6
+  - first:
+      213: 5658458926838325890
+    second: sactx-1024x2048-ETC2-ProgressBars_Common_Atlas-2a16259b_7
+  - first:
+      213: -949573848544235139
+    second: sactx-1024x2048-ETC2-ProgressBars_Common_Atlas-2a16259b_8
+  - first:
+      213: -6405505107318229303
+    second: sactx-1024x2048-ETC2-ProgressBars_Common_Atlas-2a16259b_9
+  - first:
+      213: 6698718866485940184
+    second: sactx-1024x2048-ETC2-ProgressBars_Common_Atlas-2a16259b_10
+  - first:
+      213: -1602686741920267918
+    second: sactx-1024x2048-ETC2-ProgressBars_Common_Atlas-2a16259b_11
+  - first:
+      213: 6826722859821717149
+    second: sactx-1024x2048-ETC2-ProgressBars_Common_Atlas-2a16259b_12
+  - first:
+      213: -6237554234708157567
+    second: sactx-1024x2048-ETC2-ProgressBars_Common_Atlas-2a16259b_13
+  - first:
+      213: -3746457211279040390
+    second: sactx-1024x2048-ETC2-ProgressBars_Common_Atlas-2a16259b_14
+  - first:
+      213: -4283404777646908997
+    second: sactx-1024x2048-ETC2-ProgressBars_Common_Atlas-2a16259b_15
+  - first:
+      213: -5127255593309902610
+    second: sactx-1024x2048-ETC2-ProgressBars_Common_Atlas-2a16259b_16
+  - first:
+      213: -1371786722674863205
+    second: sactx-1024x2048-ETC2-ProgressBars_Common_Atlas-2a16259b_17
+  - first:
+      213: -6345690902154351994
+    second: sactx-1024x2048-ETC2-ProgressBars_Common_Atlas-2a16259b_18
+  - first:
+      213: -6140209125055053743
+    second: sactx-1024x2048-ETC2-ProgressBars_Common_Atlas-2a16259b_19
+  - first:
+      213: -694932748683402823
+    second: sactx-1024x2048-ETC2-ProgressBars_Common_Atlas-2a16259b_20
+  - first:
+      213: -9046837784433295346
+    second: sactx-1024x2048-ETC2-ProgressBars_Common_Atlas-2a16259b_21
+  - first:
+      213: 5900366805204103644
+    second: sactx-1024x2048-ETC2-ProgressBars_Common_Atlas-2a16259b_22
+  - first:
+      213: 497926050752859651
+    second: sactx-1024x2048-ETC2-ProgressBars_Common_Atlas-2a16259b_23
+  - first:
+      213: -159510607884757079
+    second: sactx-1024x2048-ETC2-ProgressBars_Common_Atlas-2a16259b_24
+  - first:
+      213: 4432901783933582171
+    second: sactx-1024x2048-ETC2-ProgressBars_Common_Atlas-2a16259b_25
+  - first:
+      213: -5129519272407353240
+    second: sactx-1024x2048-ETC2-ProgressBars_Common_Atlas-2a16259b_26
+  - first:
+      213: -3753160511332449614
+    second: sactx-1024x2048-ETC2-ProgressBars_Common_Atlas-2a16259b_27
+  - first:
+      213: -163855350255465644
+    second: sactx-1024x2048-ETC2-ProgressBars_Common_Atlas-2a16259b_28
+  - first:
+      213: -4024876853859541816
+    second: sactx-1024x2048-ETC2-ProgressBars_Common_Atlas-2a16259b_29
+  - first:
+      213: -7126185592018102530
+    second: sactx-1024x2048-ETC2-ProgressBars_Common_Atlas-2a16259b_30
+  - first:
+      213: -8609613942511472982
+    second: sactx-1024x2048-ETC2-ProgressBars_Common_Atlas-2a16259b_31
+  - first:
+      213: 3184424498627774965
+    second: sactx-1024x2048-ETC2-ProgressBars_Common_Atlas-2a16259b_32
+  - first:
+      213: 3010693164381441750
+    second: sactx-1024x2048-ETC2-ProgressBars_Common_Atlas-2a16259b_33
+  - first:
+      213: 2026422740495787563
+    second: sactx-1024x2048-ETC2-ProgressBars_Common_Atlas-2a16259b_34
+  - first:
+      213: 4219564288391415719
+    second: sactx-1024x2048-ETC2-ProgressBars_Common_Atlas-2a16259b_35
+  - first:
+      213: -2749725165041838862
+    second: sactx-1024x2048-ETC2-ProgressBars_Common_Atlas-2a16259b_36
+  - first:
+      213: 5996102883787854834
+    second: sactx-1024x2048-ETC2-ProgressBars_Common_Atlas-2a16259b_37
+  - first:
+      213: -4383698799770980396
+    second: sactx-1024x2048-ETC2-ProgressBars_Common_Atlas-2a16259b_38
+  - first:
+      213: -4618502634482804184
+    second: sactx-1024x2048-ETC2-ProgressBars_Common_Atlas-2a16259b_39
+  - first:
+      213: -3566726817313593380
+    second: sactx-1024x2048-ETC2-ProgressBars_Common_Atlas-2a16259b_40
+  - first:
+      213: 8605391742632657051
+    second: sactx-1024x2048-ETC2-ProgressBars_Common_Atlas-2a16259b_41
+  - first:
+      213: -5584097727291926414
+    second: sactx-1024x2048-ETC2-ProgressBars_Common_Atlas-2a16259b_42
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 64
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: iPhone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Windows Store Apps
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: sactx-1024x2048-ETC2-ProgressBars_Common_Atlas-2a16259b_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1617
+        width: 41
+        height: 69
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 90ee89396ac3b8400800000000000000
+      internalID: 327422084053003785
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-1024x2048-ETC2-ProgressBars_Common_Atlas-2a16259b_1
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 1525
+        width: 76
+        height: 86
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 467a7df10d3d7fee0800000000000000
+      internalID: -1227279482594285724
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-1024x2048-ETC2-ProgressBars_Common_Atlas-2a16259b_2
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 1412
+        width: 282
+        height: 161
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 86226bf98cf31b3d0800000000000000
+      internalID: -3192700529923448216
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-1024x2048-ETC2-ProgressBars_Common_Atlas-2a16259b_3
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 1423
+        width: 93
+        height: 90
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 552437d5d25419ed0800000000000000
+      internalID: -2409068264522825131
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-1024x2048-ETC2-ProgressBars_Common_Atlas-2a16259b_4
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 1324
+        width: 106
+        height: 88
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 74974cee63f54a7f0800000000000000
+      internalID: -602251760622077625
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-1024x2048-ETC2-ProgressBars_Common_Atlas-2a16259b_8
+      rect:
+        serializedVersion: 2
+        x: 260
+        y: 1327
+        width: 89
+        height: 94
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d713585ad9f62d2f0800000000000000
+      internalID: -949573848544235139
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-1024x2048-ETC2-ProgressBars_Common_Atlas-2a16259b_9
+      rect:
+        serializedVersion: 2
+        x: 355
+        y: 1326
+        width: 77
+        height: 68
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9c6b85fea031b17a0800000000000000
+      internalID: -6405505107318229303
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-1024x2048-ETC2-ProgressBars_Common_Atlas-2a16259b_10
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 1205
+        width: 123
+        height: 109
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8df0a175151a6fc50800000000000000
+      internalID: 6698718866485940184
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-1024x2048-ETC2-ProgressBars_Common_Atlas-2a16259b_11
+      rect:
+        serializedVersion: 2
+        x: 129
+        y: 1200
+        width: 125
+        height: 129
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2714d9d46ec12c9e0800000000000000
+      internalID: -1602686741920267918
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-1024x2048-ETC2-ProgressBars_Common_Atlas-2a16259b_12
+      rect:
+        serializedVersion: 2
+        x: 260
+        y: 1206
+        width: 101
+        height: 109
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d9656bf75446dbe50800000000000000
+      internalID: 6826722859821717149
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-1024x2048-ETC2-ProgressBars_Common_Atlas-2a16259b_13
+      rect:
+        serializedVersion: 2
+        x: 373
+        y: 1206
+        width: 82
+        height: 114
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 18b9cf4b871cf69a0800000000000000
+      internalID: -6237554234708157567
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-1024x2048-ETC2-ProgressBars_Common_Atlas-2a16259b_14
+      rect:
+        serializedVersion: 2
+        x: 467
+        y: 1206
+        width: 89
+        height: 98
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a7023831409e10cc0800000000000000
+      internalID: -3746457211279040390
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-1024x2048-ETC2-ProgressBars_Common_Atlas-2a16259b_15
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1154
+        width: 494
+        height: 42
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bb915279c0a4e84c0800000000000000
+      internalID: -4283404777646908997
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-1024x2048-ETC2-ProgressBars_Common_Atlas-2a16259b_16
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1100
+        width: 516
+        height: 53
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ee8e028043458d8b0800000000000000
+      internalID: -5127255593309902610
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-1024x2048-ETC2-ProgressBars_Common_Atlas-2a16259b_17
+      rect:
+        serializedVersion: 2
+        x: 515
+        y: 1023
+        width: 127
+        height: 127
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b931e576e3f66fce0800000000000000
+      internalID: -1371786722674863205
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-1024x2048-ETC2-ProgressBars_Common_Atlas-2a16259b_18
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1028
+        width: 516
+        height: 66
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 68a69a2deb39fe7a0800000000000000
+      internalID: -6345690902154351994
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-1024x2048-ETC2-ProgressBars_Common_Atlas-2a16259b_19
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 967
+        width: 474
+        height: 61
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1504b7e355899caa0800000000000000
+      internalID: -6140209125055053743
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-1024x2048-ETC2-ProgressBars_Common_Atlas-2a16259b_20
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 957
+        width: 477
+        height: 60
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9b1a0f3d85a1b56f0800000000000000
+      internalID: -694932748683402823
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-1024x2048-ETC2-ProgressBars_Common_Atlas-2a16259b_21
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 860
+        width: 500
+        height: 95
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e00854e97fc237280800000000000000
+      internalID: -9046837784433295346
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-1024x2048-ETC2-ProgressBars_Common_Atlas-2a16259b_22
+      rect:
+        serializedVersion: 2
+        x: 511
+        y: 856
+        width: 513
+        height: 100
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cd172bc095052e150800000000000000
+      internalID: 5900366805204103644
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-1024x2048-ETC2-ProgressBars_Common_Atlas-2a16259b_23
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 754
+        width: 511
+        height: 98
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 30e8983ea1df8e600800000000000000
+      internalID: 497926050752859651
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-1024x2048-ETC2-ProgressBars_Common_Atlas-2a16259b_24
+      rect:
+        serializedVersion: 2
+        x: 524
+        y: 692
+        width: 56
+        height: 47
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9a75f1f72fd49cdf0800000000000000
+      internalID: -159510607884757079
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-1024x2048-ETC2-ProgressBars_Common_Atlas-2a16259b_25
+      rect:
+        serializedVersion: 2
+        x: 689
+        y: 608
+        width: 101
+        height: 100
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b5b7e8b9fa4d48d30800000000000000
+      internalID: 4432901783933582171
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-1024x2048-ETC2-ProgressBars_Common_Atlas-2a16259b_26
+      rect:
+        serializedVersion: 2
+        x: 521
+        y: 492
+        width: 163
+        height: 187
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 868b3ab266940d8b0800000000000000
+      internalID: -5129519272407353240
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-1024x2048-ETC2-ProgressBars_Common_Atlas-2a16259b_27
+      rect:
+        serializedVersion: 2
+        x: 694
+        y: 493
+        width: 110
+        height: 111
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2b2810966681aebc0800000000000000
+      internalID: -3753160511332449614
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-1024x2048-ETC2-ProgressBars_Common_Atlas-2a16259b_28
+      rect:
+        serializedVersion: 2
+        x: 815
+        y: 513
+        width: 14
+        height: 48
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 45bc9755d6ed9bdf0800000000000000
+      internalID: -163855350255465644
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-1024x2048-ETC2-ProgressBars_Common_Atlas-2a16259b_29
+      rect:
+        serializedVersion: 2
+        x: 825
+        y: 520
+        width: 11
+        height: 33
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8cc920d73d3c428c0800000000000000
+      internalID: -4024876853859541816
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-1024x2048-ETC2-ProgressBars_Common_Atlas-2a16259b_30
+      rect:
+        serializedVersion: 2
+        x: 839
+        y: 493
+        width: 60
+        height: 90
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ef61140d5f3ba1d90800000000000000
+      internalID: -7126185592018102530
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-1024x2048-ETC2-ProgressBars_Common_Atlas-2a16259b_31
+      rect:
+        serializedVersion: 2
+        x: 902
+        y: 520
+        width: 11
+        height: 33
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aae6a572cb1848880800000000000000
+      internalID: -8609613942511472982
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-1024x2048-ETC2-ProgressBars_Common_Atlas-2a16259b_32
+      rect:
+        serializedVersion: 2
+        x: 910
+        y: 512
+        width: 13
+        height: 49
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5f982cea539513c20800000000000000
+      internalID: 3184424498627774965
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-1024x2048-ETC2-ProgressBars_Common_Atlas-2a16259b_33
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 362
+        width: 492
+        height: 124
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6de07ae4b7128c920800000000000000
+      internalID: 3010693164381441750
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-1024x2048-ETC2-ProgressBars_Common_Atlas-2a16259b_34
+      rect:
+        serializedVersion: 2
+        x: 504
+        y: 363
+        width: 500
+        height: 119
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b26660cfebc4f1c10800000000000000
+      internalID: 2026422740495787563
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-1024x2048-ETC2-ProgressBars_Common_Atlas-2a16259b_35
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 515
+        height: 190
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7a78e743d57ee8a30800000000000000
+      internalID: 4219564288391415719
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-1024x2048-ETC2-ProgressBars_Common_Atlas-2a16259b_36
+      rect:
+        serializedVersion: 2
+        x: 599
+        y: 267
+        width: 26
+        height: 26
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2f49ab3f78307d9d0800000000000000
+      internalID: -2749725165041838862
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-1024x2048-ETC2-ProgressBars_Common_Atlas-2a16259b_37
+      rect:
+        serializedVersion: 2
+        x: 637
+        y: 265
+        width: 24
+        height: 10
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2f3ded8ddcf663350800000000000000
+      internalID: 5996102883787854834
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-1024x2048-ETC2-ProgressBars_Common_Atlas-2a16259b_38
+      rect:
+        serializedVersion: 2
+        x: 521
+        y: 1
+        width: 254
+        height: 254
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4df285dda29f923c0800000000000000
+      internalID: -4383698799770980396
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-1024x2048-ETC2-ProgressBars_Common_Atlas-2a16259b_39
+      rect:
+        serializedVersion: 2
+        x: 780
+        y: 0
+        width: 51
+        height: 47
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 82a5275e258c7efb0800000000000000
+      internalID: -4618502634482804184
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-1024x2048-ETC2-ProgressBars_Common_Atlas-2a16259b_40
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 194
+        width: 509
+        height: 167
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cd7e9236bd0708ec0800000000000000
+      internalID: -3566726817313593380
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-1024x2048-ETC2-ProgressBars_Common_Atlas-2a16259b_41
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 623
+        width: 510
+        height: 124
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b9003b4523e7c6770800000000000000
+      internalID: 8605391742632657051
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-1024x2048-ETC2-ProgressBars_Common_Atlas-2a16259b_42
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 496
+        width: 511
+        height: 121
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 278d2bde3bc4182b0800000000000000
+      internalID: -5584097727291926414
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
