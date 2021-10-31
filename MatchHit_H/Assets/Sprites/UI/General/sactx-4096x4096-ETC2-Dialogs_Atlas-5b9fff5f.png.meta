@@ -20,6 +20,9 @@ TextureImporter:
   - first:
       213: -7887638351477409480
     second: sactx-4096x4096-ETC2-Dialogs_Atlas-5b9fff5f_5
+  - first:
+      213: -2104210640719739393
+    second: sactx-4096x4096-ETC2-Dialogs_Atlas-5b9fff5f_6
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -270,7 +273,7 @@ TextureImporter:
         width: 269
         height: 259
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 20, y: 44, z: 20, w: 43}
       outline: []
       physicsShape: []
@@ -278,6 +281,27 @@ TextureImporter:
       bones: []
       spriteID: 839f077b5ba798290800000000000000
       internalID: -7887638351477409480
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-4096x4096-ETC2-Dialogs_Atlas-5b9fff5f_6
+      rect:
+        serializedVersion: 2
+        x: 3468
+        y: 1027
+        width: 113
+        height: 108
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ff58d4322975cc2e0800000000000000
+      internalID: -2104210640719739393
       vertices: []
       indices: 
       edges: []

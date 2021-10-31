@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using UnityEngine.Events;
 
 public class GameManager : MonoBehaviour
 {
@@ -9,85 +10,38 @@ public class GameManager : MonoBehaviour
     public enum eGameSates
     {
         INDIE,
-        LOAD,
-        READY,
-        GAME_STARTED,
-        SETTING,
+        LOADING,
+        BATTLE_STARTED,
         GAME_WIN,
         GAME_LOSE,
     }
 
-    private static GameManager GM_Instance;
-    public static GameManager Instance
-    {
-        get
-        {
-            if(GM_Instance == null)
-            {
-                GameObject singletonObject = new GameObject();
-                GM_Instance = singletonObject.AddComponent<GameManager>();
-                singletonObject.name = "Singleton - GameManager";
-                Debug.Log("Create singleton - GameManager");
-            }
-            return GM_Instance;
-        }
-        private set { }
-    }
-
     public eGameSates _gameState;
 
+    public UnityEvent<eGameSates> OnGameStateChange;
+
+    public static GameManager Instance; 
 
     private void Awake()
     {
-        if (GM_Instance != null && GM_Instance != this)
-        {
-            Destroy(gameObject);
-        }
-        else
-        {
-            // set instance
-            GM_Instance = this;
-        }
+        Instance = this;
 
-        GameObject.DontDestroyOnLoad(gameObject);
+//        GameObject.DontDestroyOnLoad(gameObject);
+
+        OnGameStateChange.AddListener(GameStateChange);
+
     }
 
-    Dictionary<eGameSates, Action<object>> _gameSateListeners = new Dictionary<eGameSates, Action<object>>();
 
-    // Register to listen for GameSate
-    public void RegisGameStateListener(eGameSates gameSate, Action<object> callback)
+   public void GameStateChange(eGameSates gameSates)
     {
-        //check if listener exist in dictionary
-        if (_gameSateListeners.ContainsKey(gameSate))
-        {
-            _gameSateListeners[gameSate] += callback;
-        }
-        else
-        {
-            _gameSateListeners.Add(gameSate, null);
-            _gameSateListeners[gameSate] += callback;
-            Debug.Log("Register Listener for GameState: " + gameSate);
-        }
+        this._gameState = gameSates;
     }
 
-    public void PostGameSateChange(eGameSates gameSate, object param = null)
+    private void Start()
     {
-        if (!_gameSateListeners.ContainsKey(gameSate))
-        {
-            Debug.Log("Listeners not contain this state");
-            return;
-        }
-
-        _gameState = gameSate;
-        var callBack = _gameSateListeners[gameSate];
-        if (callBack != null)
-        {
-            callBack(param);
-        }
-        else
-        {
-            _gameSateListeners.Remove(gameSate);
-        }
+        OnGameStateChange.Invoke(eGameSates.INDIE);
+        Debug.Log("Game Start");
     }
 
 }
