@@ -21,16 +21,17 @@ public class GameManager : MonoBehaviour
 
     public UnityEvent<eGameSates> OnGameStateChange;
 
-    public static GameManager Instance; 
+    public static GameManager instance;
+
 
     private void Awake()
     {
-        Instance = this;
+        if (instance != null && instance != this)
+             Destroy(gameObject);
 
-//        GameObject.DontDestroyOnLoad(gameObject);
+        instance = this;
 
         OnGameStateChange.AddListener(GameStateChange);
-
     }
 
 
