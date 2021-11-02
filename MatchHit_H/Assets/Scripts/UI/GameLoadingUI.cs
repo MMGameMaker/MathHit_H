@@ -6,13 +6,15 @@ using UnityEngine.UI;
 
 public class GameLoadingUI : MonoBehaviour
 {
-    public GameManager gameManager;
+    private GameManager gameManager;
     public Text countDownText;
     private int countDownNum;
     
     // Start is called before the first frame update
     void Start()
     {
+        gameManager = GameManager.Instance.transform.GetComponent<GameManager>();
+
         gameManager.OnGameStateChange.AddListener(StartLoading);
     }
 

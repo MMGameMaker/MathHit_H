@@ -6,9 +6,15 @@ using System;
 public class UIManager : MonoBehaviour
 {
 
-    public GameManager gameManager;
-   
+    private GameManager gameManager;
 
+    private static UIManager uiManagerInstance;
+
+    public static UIManager Instance
+    {
+        get;
+        private set;
+    }
 
     [System.Serializable]
     public struct GameUIPrefab
@@ -21,11 +27,16 @@ public class UIManager : MonoBehaviour
 
     private void Awake()
     {
-        
+        if(Instance!=null & Instance != this)
+        {
+            Destroy(Instance.gameObject);
+        }
+        Instance = this;
     }
 
     private void Start()
     {
+        gameManager = GameManager.Instance.gameObject.GetComponent<GameManager>();
         gameManager.OnGameStateChange.AddListener(GameSateUIChange);
     }
 

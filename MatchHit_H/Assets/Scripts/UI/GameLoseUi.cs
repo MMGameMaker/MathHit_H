@@ -5,7 +5,14 @@ using UnityEngine.SceneManagement;
 
 public class GameLoseUi : MonoBehaviour
 {
-    public GameManager gameManager;
+   
+    private GameManager gameManager;
+
+    private void Start()
+    {
+        gameManager = GameManager.Instance.transform.GetComponent<GameManager>();
+    }
+
     public void Revival()
     {
         gameManager.OnGameStateChange.Invoke(GameManager.eGameSates.BATTLE_STARTED);
@@ -13,6 +20,6 @@ public class GameLoseUi : MonoBehaviour
 
     public void Home()
     {
-        gameManager.OnGameStateChange.Invoke(GameManager.eGameSates.INDIE);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }

@@ -5,7 +5,8 @@ using UnityEngine.UI;
 
 public class HUDController : MonoBehaviour
 {
-    public GameManager gameManager;
+    private GameManager gameManager;
+
     [SerializeField]
     private Button settingBtn;
 
@@ -15,6 +16,14 @@ public class HUDController : MonoBehaviour
     [SerializeField]
     private GameObject homeBtn;
 
+
+    private void Start()
+    {
+        gameManager = GameManager.Instance.transform.GetComponent<GameManager>();
+
+        gameManager.OnGameStateChange.AddListener(DisableOnSceneLoad);
+    }
+
     public void OnSettingBtnClick()
     {
         settingUI.SetActive(true);
@@ -23,4 +32,18 @@ public class HUDController : MonoBehaviour
             homeBtn.SetActive(false);
         }
     }
+
+    public void DisableOnSceneLoad(GameManager.eGameSates gameSates)
+    {
+        if(gameSates == GameManager.eGameSates.LOADING)
+        {
+            this.gameObject.SetActive(false);
+        }
+        else
+        {
+            this.gameObject.SetActive(true);
+        }
+    }
+
+
 }

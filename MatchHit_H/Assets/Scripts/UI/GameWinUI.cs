@@ -1,12 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameWinUI : MonoBehaviour
 {
-    public GameManager gameManager;
+    private GameManager gameManager;
+
+    private void Start()
+    {
+        gameManager = GameManager.Instance.transform.GetComponent<GameManager>();
+    }
+
     public void ToNextLvlIndie()
     {
-        gameManager.OnGameStateChange.Invoke(GameManager.eGameSates.INDIE);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }

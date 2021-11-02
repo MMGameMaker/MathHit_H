@@ -5,11 +5,13 @@ using UnityEngine;
 public class BoardManager : MonoBehaviour
 {
 
-    [SerializeField] GameManager gameManager;
+    private GameManager gameManager;
     
     // Start is called before the first frame update
     void Start()
     {
+        gameManager = GameManager.Instance.transform.GetComponent<GameManager>();
+
         gameManager.OnGameStateChange.AddListener(BoardActiveControll);
     }
 

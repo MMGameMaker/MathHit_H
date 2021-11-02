@@ -5,7 +5,13 @@ using UnityEngine.UI;
 
 public class IndieUI : MonoBehaviour
 {
-    public GameManager gameManager;
+    private GameManager gameManager;
+
+    private void Start()
+    {
+        gameManager = GameManager.Instance.transform.GetComponent<GameManager>();
+    }
+
     public void OnTapToPlay()
     {
         gameManager.OnGameStateChange.Invoke(GameManager.eGameSates.LOADING);
