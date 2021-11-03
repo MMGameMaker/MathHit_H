@@ -5,6 +5,8 @@ using UnityEngine;
 public class BoardManager : MonoBehaviour
 {
     private GameManager gameManager;
+
+    public static BoardManager boardInstance;
     
     public enum ePieceType
     {
@@ -37,11 +39,22 @@ public class BoardManager : MonoBehaviour
 
     private GamePiece[] pieces;
 
+    List<GamePiece> matchList = new List<GamePiece>();
 
+    private bool isMatching = false;
 
+    private GamePiece lastListPiece;
+
+    public bool IsMatching 
+    { 
+        get {return isMatching; }
+        set { this.isMatching = value; }
+    }
 
     private void Awake()
     {
+        boardInstance = this;
+        
         boardSize = xDim * yDim;
 
         pieces = new GamePiece[boardSize];
@@ -67,12 +80,11 @@ public class BoardManager : MonoBehaviour
         {
             SpawnNewPiece(i, ePieceType.NORMALCAKE);
 
-            pieces[i].CakeComponent.SetType((CakePiece.CakeType)Random.Range(0, pieces[i].CakeComponent.NumCakeType));
-            
+            pieces[i].CakeComponent.SetType((CakePiece.CakeType)Random.Range(0, pieces[i].CakeComponent.NumCakeType));           
         }
-
     }
 
+    
 
     // Start is called before the first frame update
     void Start()
@@ -87,10 +99,56 @@ public class BoardManager : MonoBehaviour
     void Update()
     {
         
-
-
     }
 
+    public void UpdateMatchList(GamePiece newPiece)
+    {
+        if (!isMatching)
+        {
+            return;
+        }
+
+        if (matchList.Count == 0)
+        {
+            matchList.Add(newPiece);
+            newPiece.transform.localScale = new Vector3(1.1f, 1.1f, 1);
+            Debug.Log("add first piece" + newPiece.X + " , " + newPiece.Y) ;
+            return;
+        }
+
+        if (isNeighbor(newPiece, matchList[matchList.Count - 1]) && isSameCakeType(newPiece, matchList[matchList.Count - 1]) && !matchList.Contains(newPiece))
+        {
+            matchList.Add(newPiece);
+            newPiece.transform.localScale = new Vector3(1.1f, 1.1f, 1);
+            Debug.Log("add piece");
+            return;
+        }
+
+        if (newPiece == matchList[matchList.Count - 1] && matchList.Count > 1)
+        {
+            matchList.Remove(newPiece);
+            newPiece.transform.localScale = new Vector3(1, 1, 1);
+            Debug.Log("remove piece");
+            return;
+        }
+        return;
+    }
+
+    public void ResetMatchList()
+    {
+        if(matchList.Count >= 2)
+        {
+            foreach (GamePiece item in matchList)
+                Destroy(item.gameObject);
+        }
+        else
+        {
+            pieces[0].transform.localScale = new Vector3(1, 1, 1);  
+        }
+        this.matchList.Clear();
+        this.isMatching = false;
+        Debug.Log("reset list!");
+    }
 
 
     public void BoardActiveControll(GameManager.eGameSates gameSates)
@@ -120,12 +178,33 @@ public class BoardManager : MonoBehaviour
         GameObject newpiece = GameObject.Instantiate(piecePrefabDict[type], GetWorldPosition(i), Quaternion.identity);
         newpiece.transform.parent = this.transform;
 
-        Debug.Log("init piece!");
+//        Debug.Log("init piece!");
 
         pieces[i] = newpiece.GetComponent<GamePiece>();
         pieces[i].Init(i, this, type);
 
+        pieces[i].X = i / xDim; ;
+        pieces[i].Y = i % xDim;
+
         return pieces[i];
     }
 
+    private bool isNeighbor(GamePiece piece1, GamePiece piece2)
+    {
+        if (piece1 == piece2)
+            return false;
+        if (Mathf.Abs(piece1.X - piece2.X) > 1)
+            return false;
+        if (Mathf.Abs(piece1.Y - piece2.Y) > 1)
+            return false;
+        return true;
+    }
+
+    private bool isSameCakeType(GamePiece piece1, GamePiece piece2)
+    {
+        if (piece1.CakeComponent.Type == piece2.CakeComponent.Type)
+            return true;
+        else
+            return false;
+    }
 }

@@ -28,8 +28,6 @@ public class GamePiece : MonoBehaviour
         }
     }
 
-
-
     private ClearablePiece clearableComponent;
     public ClearablePiece ClearableComponent
     {
@@ -61,6 +59,8 @@ public class GamePiece : MonoBehaviour
         get { return board; }
     }
 
+
+
     private void Awake()
     {
         clearableComponent = GetComponent<ClearablePiece>();
@@ -84,8 +84,38 @@ public class GamePiece : MonoBehaviour
     public void Init(int i, BoardManager _board, BoardManager.ePieceType _type)
     {
         this.boardIndex = i;
+
+
         this.board = _board;
         this.type = _type;
+    }
+
+    private void OnMouseDown()
+    {
+        board.IsMatching = true;
+        board.UpdateMatchList(this);
+    }
+
+    private void OnMouseEnter()
+    {
+        if (!board.IsMatching)
+        {
+            return;
+        }
+        else
+        {
+            board.UpdateMatchList(this);
+        }        
+    }
+
+    private void OnMouseUp()
+    {
+        if (!board.IsMatching)
+        {
+            return;
+        }
+        Debug.Log("finish matching!");
+        board.ResetMatchList();
     }
 
 
