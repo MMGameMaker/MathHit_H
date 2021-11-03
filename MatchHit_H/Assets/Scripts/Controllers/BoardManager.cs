@@ -18,10 +18,18 @@ public class BoardManager : MonoBehaviour
     [SerializeField]
     private int xDim;
 
+    public int XDim { get => xDim; }
+
     [SerializeField]
     private int yDim;
 
+    public int YDim { get => yDim; }
+
     private int boardSize;
+
+    public float fillTime;
+
+    private bool isFilling = false;
 
 
     [System.Serializable]
@@ -101,6 +109,66 @@ public class BoardManager : MonoBehaviour
         
     }
 
+
+    public IEnumerator Fill()
+    {
+
+        this.isFilling = true;
+
+        while (FillStep())
+        {
+            yield return new WaitForSeconds(fillTime);
+        }
+
+        this.isFilling = false;
+    }
+
+    public bool FillStep()
+    {
+        bool movePiece = false;
+
+        for(int i = boardSize - xDim -1; i>=0; i--)
+        {
+            GamePiece piece = pieces[i];
+
+            if (piece.isMoveabe())
+            {
+                GamePiece pieceBelow = pieces[i + xDim];
+
+                if (pieceBelow.Type == ePieceType.EMPTY)
+                {
+                    Destroy(pieceBelow.gameObject);
+                    piece.MoveableComponent.Move(pieceBelow.BoardIndex, fillTime);
+                    piece.BoardIndex = i + xDim;
+                    pieces[i + xDim] = piece;
+                    SpawnNewPiece(i, ePieceType.EMPTY);
+                    movePiece = true;
+                }
+            }
+        }
+
+        for (int i = 0; i < xDim; i++)
+        {
+            GamePiece pieceBelow = pieces[i];
+
+            if (pieceBelow.Type == ePieceType.EMPTY)
+            {
+                Destroy(pieceBelow.gameObject);
+
+                GameObject newPiece = GameObject.Instantiate(piecePrefabDict[ePieceType.NORMALCAKE], new Vector3(GetWorldPosition(i).x, GetWorldPosition(i).y + 2, 0), Quaternion.identity);
+                newPiece.transform.parent = transform;
+
+                pieces[i] = newPiece.GetComponent<GamePiece>();
+                pieces[i].Init(i, this, ePieceType.NORMALCAKE);
+                pieces[i].MoveableComponent.Move(i, fillTime);
+                pieces[i].CakeComponent.SetType((CakePiece.CakeType)Random.Range(0, pieces[i].CakeComponent.NumCakeType));
+                movePiece = true;
+            }
+        }
+
+        return movePiece;
+    }
+
     public void UpdateMatchList(GamePiece newPiece)
     {
         if (!isMatching)
@@ -138,18 +206,30 @@ public class BoardManager : MonoBehaviour
     {
         if(matchList.Count >= 2)
         {
-            foreach (GamePiece item in matchList)
-                Destroy(item.gameObject);
+            ClearMatchList();
         }
         else
         {
-            pieces[0].transform.localScale = new Vector3(1, 1, 1);  
+            matchList[0].transform.localScale = new Vector3(1, 1, 1);  
         }
         this.matchList.Clear();
         this.isMatching = false;
-        Debug.Log("reset list!");
+        Debug.Log("reset matchlist!");
+
+        StartCoroutine(Fill());
     }
 
+    public void ClearMatchList()
+    {
+        for(int i = 0; i <matchList.Count; i++)
+        {
+            int boardIndex = matchList[i].BoardIndex;
+
+            matchList[i].ClearableComponent.Clear();
+
+            SpawnNewPiece(boardIndex, ePieceType.EMPTY);
+        }
+    }
 
     public void BoardActiveControll(GameManager.eGameSates gameSates)
     {
@@ -166,9 +246,9 @@ public class BoardManager : MonoBehaviour
 
     public Vector2 GetWorldPosition(int i)
     {
-        int x = i / xDim;
+        int y = i / xDim;
 
-        int y = i % xDim;
+        int x = i % xDim;
         
         return new Vector2(transform.position.x - xDim + x*2 + 1 , transform.position.y + yDim  - y*2 - 1);
     }
@@ -182,9 +262,6 @@ public class BoardManager : MonoBehaviour
 
         pieces[i] = newpiece.GetComponent<GamePiece>();
         pieces[i].Init(i, this, type);
-
-        pieces[i].X = i / xDim; ;
-        pieces[i].Y = i % xDim;
 
         return pieces[i];
     }

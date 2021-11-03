@@ -5,28 +5,26 @@ using UnityEngine;
 public class GamePiece : MonoBehaviour
 {
     private int boardIndex;
-    private int x;
-    private int y;
+   
+    public int BoardIndex
+    {
+        get { return boardIndex; }
+        set { boardIndex = value; }
+    }
 
     public int X
     {
-        get { return x; }
-        set 
-        {
-            if (isMoveabe())
-                x = value;
-        }
+        get { return boardIndex % board.XDim; }
+        
     }
 
     public int Y
     {
-        get { return y; }
-        set 
-        {
-            if (isMoveabe())
-                y = value;
-        }
+        get { return boardIndex / board.XDim; }
+        
     }
+
+
 
     private ClearablePiece clearableComponent;
     public ClearablePiece ClearableComponent
@@ -84,8 +82,6 @@ public class GamePiece : MonoBehaviour
     public void Init(int i, BoardManager _board, BoardManager.ePieceType _type)
     {
         this.boardIndex = i;
-
-
         this.board = _board;
         this.type = _type;
     }

@@ -6892,6 +6892,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   xDim: 6
   yDim: 6
+  fillTime: 0.3
   backgroundPrefab: {fileID: 2465930797670472824, guid: 308bf803cc13268419dee70735aceb72, type: 3}
   piecePrefabs:
   - type: 0
