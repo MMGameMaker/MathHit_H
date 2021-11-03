@@ -34,6 +34,11 @@ public class CakePiece : MonoBehaviour
 
     private Dictionary<CakeType, Sprite> caketypeSpriteDict;
 
+    public int NumCakeType
+    {
+        get { return cakeTypes.Length; }
+    }
+
 
     private void Awake()
     {
@@ -50,6 +55,9 @@ public class CakePiece : MonoBehaviour
         }
     }
 
+
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -62,10 +70,13 @@ public class CakePiece : MonoBehaviour
         
     }
 
-    private void SetType(CakeType _type)
+    public void SetType(CakeType _type)
     {
         this.type = _type;
+
+        if (caketypeSpriteDict.ContainsKey(_type))
+        {
+            sprite.sprite = caketypeSpriteDict[_type];
+        }
     }
-
-
 }

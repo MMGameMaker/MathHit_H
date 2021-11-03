@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class GamePiece : MonoBehaviour
 {
+    private int boardIndex;
     private int x;
     private int y;
 
@@ -26,6 +27,8 @@ public class GamePiece : MonoBehaviour
                 y = value;
         }
     }
+
+
 
     private ClearablePiece clearableComponent;
     public ClearablePiece ClearableComponent
@@ -78,10 +81,9 @@ public class GamePiece : MonoBehaviour
         
     }
 
-    public void Init(int _x, int _y, BoardManager _board, BoardManager.ePieceType _type)
+    public void Init(int i, BoardManager _board, BoardManager.ePieceType _type)
     {
-        this.x = _x;
-        this.y = _y;
+        this.boardIndex = i;
         this.board = _board;
         this.type = _type;
     }
