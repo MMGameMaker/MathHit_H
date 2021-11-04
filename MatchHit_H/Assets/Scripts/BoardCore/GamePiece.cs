@@ -24,7 +24,7 @@ public class GamePiece : MonoBehaviour
         
     }
 
-
+    private BoardEvent boardEvent;
 
     private ClearablePiece clearableComponent;
     public ClearablePiece ClearableComponent
@@ -42,6 +42,12 @@ public class GamePiece : MonoBehaviour
     public MoveablePiece MoveableComponent
     {
         get { return moveableComponent; }
+    }
+
+    private SpecialPiece specialComponent;
+    public SpecialPiece SpecialComponent 
+    { 
+        get { return specialComponent; }
     }
 
     private BoardManager.ePieceType type;
@@ -64,13 +70,16 @@ public class GamePiece : MonoBehaviour
         clearableComponent = GetComponent<ClearablePiece>();
         cakeComponent = GetComponent<CakePiece>();
         moveableComponent = GetComponent<MoveablePiece>();
+        specialComponent = GetComponent<SpecialPiece>();
+        boardEvent = BoardEvent.Instance.GetComponent<BoardEvent>();
     }
 
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        if(cakeComponent)
+        boardEvent.OnBoardStateChange.AddListener(cakeComponent.OnBoardStateChange);
     }
 
     // Update is called once per frame
@@ -129,5 +138,7 @@ public class GamePiece : MonoBehaviour
     {
         return clearableComponent != null;
     }
+
+    
 
 }

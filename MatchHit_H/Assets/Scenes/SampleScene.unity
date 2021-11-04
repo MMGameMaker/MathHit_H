@@ -1149,8 +1149,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 3022445
+  m_SortingLayer: -1
   m_SortingOrder: 0
   m_Sprite: {fileID: 4193087397515559941, guid: 0bcdd57ed870f7d4086088fad0b31baa, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -5617,6 +5617,52 @@ Transform:
   m_Father: {fileID: 1660051800}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1340788076
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1340788077}
+  - component: {fileID: 1340788078}
+  m_Layer: 6
+  m_Name: BoardEvent
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1340788077
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1340788076}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1652595144}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1340788078
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1340788076}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4fb42a9a8b8ca88498a4df95b9f7fd85, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnBoardStateChange:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &1368479283
 GameObject:
   m_ObjectHideFlags: 0
@@ -6824,6 +6870,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 352020194}
+  - {fileID: 1340788077}
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -6900,7 +6947,7 @@ MonoBehaviour:
   - type: 1
     prefab: {fileID: 7510924065210322192, guid: 66b53eb6794506c4ca3fc14cc1304ead, type: 3}
   - type: 2
-    prefab: {fileID: 1472563360625844100, guid: 0a0d12ca29cc318498e355eb528e151d, type: 3}
+    prefab: {fileID: 7342742722095772805, guid: 44faeaa97deb80c44810dd550f26c90f, type: 3}
 --- !u!1 &1660051796
 GameObject:
   m_ObjectHideFlags: 0

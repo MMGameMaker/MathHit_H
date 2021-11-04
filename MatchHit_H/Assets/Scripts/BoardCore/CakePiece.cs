@@ -20,7 +20,16 @@ public class CakePiece : MonoBehaviour
         public Sprite sprite;
     }
 
+    [System.Serializable]
+    public struct CakeSpriteInactive
+    {
+        public CakeType type;
+        public Sprite spriteInactive;
+    }
+
     public CakeSprite[] cakeTypes;
+
+    public CakeSpriteInactive[] inactiveCakeTypes;
 
     private CakeType type;
 
@@ -29,6 +38,8 @@ public class CakePiece : MonoBehaviour
         get { return type; }
         set { SetType(value); }
     }
+
+    private GamePiece piece;
 
     private SpriteRenderer sprite;
 
@@ -39,9 +50,13 @@ public class CakePiece : MonoBehaviour
         get { return cakeTypes.Length; }
     }
 
+    private Dictionary<CakeType, Sprite> inactiveCakeTypesSpriteDict;
+
 
     private void Awake()
     {
+        piece = GetComponent<GamePiece>();
+
         sprite = GetComponent<SpriteRenderer>();
 
         caketypeSpriteDict = new Dictionary<CakeType, Sprite>();
@@ -53,9 +68,17 @@ public class CakePiece : MonoBehaviour
                 caketypeSpriteDict.Add(cakeTypes[i].type, cakeTypes[i].sprite);
             }
         }
+
+        inactiveCakeTypesSpriteDict = new Dictionary<CakeType, Sprite>();
+
+        for (int i = 0; i < inactiveCakeTypes.Length; i++)
+        {
+            if (!inactiveCakeTypesSpriteDict.ContainsKey(inactiveCakeTypes[i].type))
+            {
+                inactiveCakeTypesSpriteDict.Add(inactiveCakeTypes[i].type, inactiveCakeTypes[i].spriteInactive);
+            }
+        }
     }
-
-
 
 
     // Start is called before the first frame update
@@ -79,4 +102,22 @@ public class CakePiece : MonoBehaviour
             sprite.sprite = caketypeSpriteDict[_type];
         }
     }
+
+    public void OnBoardStateChange(BoardEvent.eBoardState state)
+    {
+        if (this.type == piece.BoardRef.ListCakeType)
+            return;
+        
+        if (state == BoardEvent.eBoardState.ISMATCHINGCAKE)
+        {
+            sprite.sprite = inactiveCakeTypesSpriteDict[type];
+            this.transform.localScale = new Vector2(0.6f, 0.6f); 
+        }
+        else if(state == BoardEvent.eBoardState.NORMAL)
+        {
+            sprite.sprite = caketypeSpriteDict[type];
+            this.transform.localScale = new Vector2(1, 1);
+        }
+    }
+
 }

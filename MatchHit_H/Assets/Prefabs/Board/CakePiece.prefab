@@ -73,9 +73,9 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -1741459009
-  m_SortingLayer: 2
-  m_SortingOrder: 2
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: -6558091679328004610, guid: 4d0dee87cde582043aa9f9566c3c44ec, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -110,6 +110,17 @@ MonoBehaviour:
     sprite: {fileID: -2220074758306761158, guid: 4d0dee87cde582043aa9f9566c3c44ec, type: 3}
   - type: 4
     sprite: {fileID: -8815737830852149774, guid: 4d0dee87cde582043aa9f9566c3c44ec, type: 3}
+  inactiveCakeTypes:
+  - type: 0
+    spriteInactive: {fileID: 2680107012715602965, guid: e1e8d319e6dc51747b5db0465b0604dd, type: 3}
+  - type: 1
+    spriteInactive: {fileID: 6602628530478980819, guid: e1e8d319e6dc51747b5db0465b0604dd, type: 3}
+  - type: 2
+    spriteInactive: {fileID: 4908549384567399016, guid: e1e8d319e6dc51747b5db0465b0604dd, type: 3}
+  - type: 3
+    spriteInactive: {fileID: 4591726658934038840, guid: e1e8d319e6dc51747b5db0465b0604dd, type: 3}
+  - type: 4
+    spriteInactive: {fileID: 9169743855452878539, guid: e1e8d319e6dc51747b5db0465b0604dd, type: 3}
 --- !u!114 &7510924065210322187
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -170,5 +181,5 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.6328125, y: 1.7660562}
+  m_Size: {x: 1.8, y: 1.8}
   m_EdgeRadius: 0
