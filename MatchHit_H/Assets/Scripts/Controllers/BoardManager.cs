@@ -69,13 +69,10 @@ public class BoardManager : MonoBehaviour
 
     private BoardEvent boardEvent;
 
-<<<<<<< HEAD
     [SerializeField]
     private GameObject lineMatch;
 
     private LineRenderer lineComponent;
-=======
->>>>>>> 237698e1f17bcb17e83829881d65bcf03cfc445b
 
     private void Awake()
     {
