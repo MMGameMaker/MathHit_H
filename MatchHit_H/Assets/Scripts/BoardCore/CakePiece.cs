@@ -108,12 +108,12 @@ public class CakePiece : MonoBehaviour
         if (this.type == piece.BoardRef.ListCakeType)
             return;
         
-        if (state == BoardEvent.eBoardState.ISMATCHINGCAKE)
+        if (state == BoardEvent.eBoardState.MATCHING_A_TYPE)
         {
             sprite.sprite = inactiveCakeTypesSpriteDict[type];
             this.transform.localScale = new Vector2(0.6f, 0.6f); 
         }
-        else if(state == BoardEvent.eBoardState.NORMAL)
+        else if(state == BoardEvent.eBoardState.MATCHFINISHED)
         {
             sprite.sprite = caketypeSpriteDict[type];
             this.transform.localScale = new Vector2(1, 1);

@@ -78,8 +78,7 @@ public class GamePiece : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if(cakeComponent)
-        boardEvent.OnBoardStateChange.AddListener(cakeComponent.OnBoardStateChange);
+        
     }
 
     // Update is called once per frame
