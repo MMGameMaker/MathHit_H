@@ -69,10 +69,13 @@ public class BoardManager : MonoBehaviour
 
     private BoardEvent boardEvent;
 
+<<<<<<< HEAD
     [SerializeField]
     private GameObject lineMatch;
 
     private LineRenderer lineComponent;
+=======
+>>>>>>> 237698e1f17bcb17e83829881d65bcf03cfc445b
 
     private void Awake()
     {
@@ -86,7 +89,6 @@ public class BoardManager : MonoBehaviour
 
         pieces = new GamePiece[boardSize];
 
-        for (int i=0; i<piecePrefabs.Length; i++)
         {
             if (!piecePrefabDict.ContainsKey(piecePrefabs[i].type))
             {
@@ -94,23 +96,6 @@ public class BoardManager : MonoBehaviour
                 Debug.Log("add prefab!");
             }
         }
-
-        // spawn background cells
-        for (int i = 0; i < boardSize; i++)
-        {
-            GameObject pieceBG = GameObject.Instantiate(backgroundPrefab, GetWorldPosition(i), Quaternion.identity);
-            pieceBG.transform.parent = this.transform;
-        }
-
-        SpawnBoard();
-
-        while (!IsHasPotentialMatch())
-        {
-            Debug.Log("There is no matchavaiable!");
-            ClearBoardCake();
-            SpawnBoard();
-        }
-
     }
 
     // Start is called before the first frame update
@@ -120,12 +105,57 @@ public class BoardManager : MonoBehaviour
 
         gameManager.OnGameStateChange.AddListener(BoardActiveControll);
 
+        BoardEvent.BoardStateChangeHandler += this.OnBoardSateChange;
+
+        boardEvent.CurrentBoardSate = BoardEvent.eBoardState.INIT;
     }
 
     // Update is called once per frame
     void Update()
     {
         
+    }
+
+    private void OnBoardSateChange(BoardEvent.eBoardState currentState)
+    {
+        switch (currentState)
+        {
+            case BoardEvent.eBoardState.INIT:
+                InitNewBoard();
+                break;
+
+            case BoardEvent.eBoardState.LOADING:
+                this.gameObject.SetActive(false);
+                break;
+
+            case BoardEvent.eBoardState.STARTED:
+                this.gameObject.SetActive(true);
+                break;
+
+            case BoardEvent.eBoardState.MATCHING_A_TYPE:
+
+                break;
+
+            case BoardEvent.eBoardState.MATCHFINISHED:
+                break;
+
+            case BoardEvent.eBoardState.END:
+                break;
+
+        }
+    }
+
+    private void InitNewBoard()
+    {
+        // spawn background cells
+        for (int i = 0; i < boardSize; i++)
+        {
+            GameObject pieceBG = GameObject.Instantiate(backgroundPrefab, GetWorldPosition(i), Quaternion.identity);
+            pieceBG.transform.parent = this.transform;
+        }
+
+        // spawn CakePieces
+        SpawnBoard();
     }
 
     public void SpawnBoard()
@@ -145,6 +175,13 @@ public class BoardManager : MonoBehaviour
             Destroy(pieces[i].gameObject);
         }
     }
+
+    public void MatchingSuggest()
+    {
+
+    }
+
+
 
 
     public IEnumerator Fill()
@@ -235,7 +272,7 @@ public class BoardManager : MonoBehaviour
             if (newPiece.Type == ePieceType.NORMALCAKE)
             {
                 listCakeType = newPiece.CakeComponent.Type;
-                boardEvent.OnBoardStateChange.Invoke(BoardEvent.eBoardState.ISMATCHINGCAKE);
+                boardEvent.CurrentBoardSate = BoardEvent.eBoardState.MATCHING_A_TYPE;
             }
 
             Debug.Log("add first piece" + newPiece.X + " , " + newPiece.Y) ;
@@ -256,7 +293,7 @@ public class BoardManager : MonoBehaviour
             else if (matchList[0].Type == ePieceType.SPECIAL)
             {
                 listCakeType = newPiece.CakeComponent.Type;
-                boardEvent.OnBoardStateChange.Invoke(BoardEvent.eBoardState.ISMATCHINGCAKE);
+                boardEvent.CurrentBoardSate = BoardEvent.eBoardState.MATCHING_A_TYPE;
                 AddToMatchList(newPiece);
                 return;
             }
@@ -344,7 +381,7 @@ public class BoardManager : MonoBehaviour
 
         StartCoroutine(Fill());
 
-        boardEvent.OnBoardStateChange.Invoke(BoardEvent.eBoardState.NORMAL);
+        boardEvent.CurrentBoardSate = BoardEvent.eBoardState.MATCHFINISHED;
 
         while (!IsHasPotentialMatch())
         {
@@ -450,7 +487,6 @@ public class BoardManager : MonoBehaviour
         {
             this.gameObject.SetActive(false);
         }
-
     }
 
     public Vector2 GetWorldPosition(int i)
