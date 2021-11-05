@@ -27,7 +27,7 @@ public class SettingUI : MonoBehaviour
 
     public void ToHomePage()
     {
-        gameManager.OnGameStateChange.Invoke(GameManager.eGameSates.INDIE);
+ //       gameManager.OnGameStateChange.Invoke(GameManager.eGameSates.INDIE);
         ExitSetting();
     }
 

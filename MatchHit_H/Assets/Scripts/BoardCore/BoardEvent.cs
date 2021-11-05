@@ -5,6 +5,8 @@ using UnityEngine.Events;
 
 public class BoardEvent : MonoBehaviour
 {
+    public static BoardEvent Instance { get; set; }
+
     public enum eBoardState
     {
         INIT,
@@ -15,8 +17,6 @@ public class BoardEvent : MonoBehaviour
         END,
     }
 
-    //    public UnityEvent<eBoardState> OnBoardStateChange;
-
     private eBoardState currentBoardState;
     private eBoardState lastBoardState;
 
@@ -25,16 +25,11 @@ public class BoardEvent : MonoBehaviour
         get { return Instance.currentBoardState; }
         set
         {
-            if (value != currentBoardState)
-            {
-                lastBoardState = currentBoardState;
-
                 currentBoardState = value;
 
                 BoardStateChangeHandler.Invoke(currentBoardState);
 
-                Debug.Log("Change boardState!");
-            }
+                Debug.Log("Change boardState: " + currentBoardState) ;
         }
     }
 
@@ -42,18 +37,10 @@ public class BoardEvent : MonoBehaviour
 
     public static OnBoardStateChange BoardStateChangeHandler;
 
-    public static BoardEvent Instance { get; set; }
+    
 
     private void Awake()
     {
         Instance = this;
-
-        CurrentBoardSate = eBoardState.INIT;
     }
-
-
-
-
-
-
 }

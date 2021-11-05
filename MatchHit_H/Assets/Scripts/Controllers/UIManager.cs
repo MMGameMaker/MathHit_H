@@ -16,14 +16,20 @@ public class UIManager : MonoBehaviour
         private set;
     }
 
-    [System.Serializable]
-    public struct GameUIPrefab
-    {
-        public GameManager.eGameSates gameState;
-        public GameObject prefab;
-    }
+    [SerializeField]
+    private GameObject INDIE_UI;
 
-    public GameUIPrefab[] gameUIPrefabs;
+    [SerializeField]
+    private GameObject LOADING_UI;
+
+    [SerializeField]
+    private GameObject BATTLE_STARTED_UI;
+
+    [SerializeField]
+    private GameObject GAME_WIN_UI;
+
+    [SerializeField]
+    private GameObject GAME_LOSE_UI;
 
     private void Awake()
     {
@@ -32,26 +38,78 @@ public class UIManager : MonoBehaviour
             Destroy(Instance.gameObject);
         }
         Instance = this;
+
+        OnDisableAllStateUI();
     }
 
     private void Start()
     {
+        
+
         gameManager = GameManager.Instance.gameObject.GetComponent<GameManager>();
-        gameManager.OnGameStateChange.AddListener(GameSateUIChange);
+
+        GameManager.Instance.OnGameStateChange += GameSateUIChangeHandler;
     }
 
-    public void GameSateUIChange(GameManager.eGameSates _gameSates)
+    public void GameSateUIChangeHandler(GameManager.eGameSates currentState, GameManager.eGameSates lastState)
     {
-        for (int i =0; i<gameUIPrefabs.Length; i++)
+        switch (currentState)
         {
-            if(gameUIPrefabs[i].gameState == _gameSates)
-            {
-                gameUIPrefabs[i].prefab.SetActive(true);
-            }
-            else
-            {
-                gameUIPrefabs[i].prefab.SetActive(false);
-            }
+            case GameManager.eGameSates.INDIE:
+                INDIE_UI.SetActive(true);
+                break;
+
+            case GameManager.eGameSates.LOADING:
+                LOADING_UI.SetActive(true);
+                LOADING_UI.GetComponent<GameLoadingUI>().StartCoroutine("GameLoad");
+                break;
+
+            case GameManager.eGameSates.BATTLE_STARTED:
+                BATTLE_STARTED_UI.SetActive(true);
+                break;
+
+            case GameManager.eGameSates.GAME_WIN:
+                GAME_WIN_UI.SetActive(true);
+                break;
+
+            case GameManager.eGameSates.GAME_LOSE:
+                GAME_LOSE_UI.SetActive(true);
+                break;
+        }
+
+        switch (lastState)
+        {
+            case GameManager.eGameSates.INDIE:
+                INDIE_UI.SetActive(false);
+                break;
+
+            case GameManager.eGameSates.LOADING:
+                LOADING_UI.SetActive(false);
+                break;
+
+            case GameManager.eGameSates.BATTLE_STARTED:
+                BATTLE_STARTED_UI.SetActive(false);
+                break;
+
+            case GameManager.eGameSates.GAME_WIN:
+                GAME_WIN_UI.SetActive(false);
+                break;
+
+            case GameManager.eGameSates.GAME_LOSE:
+                GAME_LOSE_UI.SetActive(false);
+                break;
         }
     }
+
+    private void OnDisableAllStateUI()
+    {
+        INDIE_UI.SetActive(false);
+        LOADING_UI.SetActive(false);
+        BATTLE_STARTED_UI.SetActive(false);
+        GAME_WIN_UI.SetActive(false);
+        GAME_LOSE_UI.SetActive(false);
+
+        Debug.Log("disable all ui");
+    }
+
 }

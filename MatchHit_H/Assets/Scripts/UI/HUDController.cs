@@ -21,19 +21,21 @@ public class HUDController : MonoBehaviour
     {
         gameManager = GameManager.Instance.transform.GetComponent<GameManager>();
 
-        gameManager.OnGameStateChange.AddListener(DisableOnSceneLoad);
+        //        gameManager.OnGameStateChange.AddListener(DisableOnSceneLoad);
+
+        gameManager.OnGameStateChange += DisableOnSceneLoad;
     }
 
     public void OnSettingBtnClick()
     {
         settingUI.SetActive(true);
-        if(gameManager._gameState == GameManager.eGameSates.INDIE)
+        if(gameManager.CurrentState == GameManager.eGameSates.INDIE)
         {
             homeBtn.SetActive(false);
         }
     }
 
-    public void DisableOnSceneLoad(GameManager.eGameSates gameSates)
+    public void DisableOnSceneLoad(GameManager.eGameSates gameSates, GameManager.eGameSates lastSate)
     {
         if(gameSates == GameManager.eGameSates.LOADING)
         {

@@ -72,9 +72,9 @@ public class BoardManager : MonoBehaviour
 
     private void Awake()
     {
-        boardEvent = BoardEvent.Instance.GetComponent<BoardEvent>();
-
         boardInstance = this;
+
+        boardEvent = BoardEvent.Instance.GetComponent<BoardEvent>();
         
         boardSize = xDim * yDim;
 
@@ -88,16 +88,17 @@ public class BoardManager : MonoBehaviour
                 Debug.Log("add prefab!");
             }
         }
+
     }
 
     // Start is called before the first frame update
     void Start()
     {
+        GameManager.Instance.OnGameStateChange += ChangeBoardActive;
+
         gameManager = GameManager.Instance.transform.GetComponent<GameManager>();
 
-        gameManager.OnGameStateChange.AddListener(BoardActiveControll);
-
-        BoardEvent.BoardStateChangeHandler += this.OnBoardSateChange;
+        BoardEvent.BoardStateChangeHandler += OnBoardSateChange;
 
         boardEvent.CurrentBoardSate = BoardEvent.eBoardState.INIT;
     }
@@ -108,7 +109,19 @@ public class BoardManager : MonoBehaviour
         
     }
 
-    private void OnBoardSateChange(BoardEvent.eBoardState currentState)
+    public void ChangeBoardActive(GameManager.eGameSates currentSate, GameManager.eGameSates lastState)
+    {
+        if(currentSate == GameManager.eGameSates.BATTLE_STARTED)
+        {
+            this.gameObject.SetActive(true);
+        }
+        else
+            this.gameObject.SetActive(false);
+    }
+
+
+
+    public void OnBoardSateChange(BoardEvent.eBoardState currentState)
     {
         switch (currentState)
         {
@@ -477,4 +490,5 @@ public class BoardManager : MonoBehaviour
         else
             return false;
     }
+    
 }

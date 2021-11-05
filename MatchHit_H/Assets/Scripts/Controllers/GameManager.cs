@@ -17,9 +17,30 @@ public class GameManager : MonoBehaviour
         GAME_LOSE,
     }
 
-    public eGameSates _gameState;
+    private eGameSates currentGameState;
 
-    public UnityEvent<eGameSates> OnGameStateChange;
+    private eGameSates lastGameState;
+
+    public eGameSates CurrentState 
+    { 
+        get => currentGameState;
+        set
+        {
+            if(value != Instance.currentGameState)
+            {
+                lastGameState = currentGameState;
+                currentGameState = value;
+                OnGameStateChange.Invoke(currentGameState, lastGameState);
+                Debug.Log("GameSate: " + currentGameState);
+            }
+        }
+    }
+
+    //    public UnityEvent<eGameSates> OnGameStateChange;
+
+    public delegate void OnGameStateChangeEvent(eGameSates currentSate, eGameSates lastState);
+
+    public OnGameStateChangeEvent OnGameStateChange;
 
     public static GameManager Instance
     {
@@ -36,20 +57,10 @@ public class GameManager : MonoBehaviour
         }
 
         Instance = this;
-
-        OnGameStateChange.AddListener(GameStateChange);
-    }
-
-
-   public void GameStateChange(eGameSates gameSates)
-    {
-        this._gameState = gameSates;
     }
 
     private void Start()
-    {
-        OnGameStateChange.Invoke(eGameSates.INDIE);
-        Debug.Log("Game Start");
+    { 
+        OnGameStateChange.Invoke(eGameSates.INDIE, eGameSates.GAME_WIN);
     }
-
 }

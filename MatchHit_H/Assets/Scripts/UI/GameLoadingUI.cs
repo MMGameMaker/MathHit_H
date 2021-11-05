@@ -6,33 +6,8 @@ using UnityEngine.UI;
 
 public class GameLoadingUI : MonoBehaviour
 {
-    private GameManager gameManager;
     public Text countDownText;
     private int countDownNum;
-    
-    // Start is called before the first frame update
-    void Start()
-    {
-        gameManager = GameManager.Instance.transform.GetComponent<GameManager>();
-
-        gameManager.OnGameStateChange.AddListener(StartLoading);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-    public void StartLoading(GameManager.eGameSates gameSates)
-    {
-        if (gameManager._gameState != GameManager.eGameSates.LOADING)
-        {
-            return;
-        }
-        StartCoroutine("GameLoad");
-    }
-
 
     IEnumerator GameLoad()
     {
@@ -44,8 +19,6 @@ public class GameLoadingUI : MonoBehaviour
             countDownNum--;
         }
 
-        gameManager.OnGameStateChange.Invoke(GameManager.eGameSates.BATTLE_STARTED);
+        GameManager.Instance.CurrentState = GameManager.eGameSates.BATTLE_STARTED;
     }
-
-
 }

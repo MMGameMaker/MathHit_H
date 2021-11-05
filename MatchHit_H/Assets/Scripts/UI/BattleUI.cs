@@ -4,16 +4,15 @@ using UnityEngine;
 
 public class BattleUI : MonoBehaviour
 {
-    public GameManager gameManager;
 
     public void GameWin()
     {
-        gameManager.OnGameStateChange.Invoke(GameManager.eGameSates.GAME_WIN);
+        GameManager.Instance.CurrentState = GameManager.eGameSates.GAME_WIN;
     }
 
     public void GameLose()
     {
-        gameManager.OnGameStateChange.Invoke(GameManager.eGameSates.GAME_LOSE);
+        GameManager.Instance.CurrentState = GameManager.eGameSates.GAME_LOSE;
     }
 
 }
