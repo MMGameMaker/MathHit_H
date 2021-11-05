@@ -69,8 +69,15 @@ public class BoardManager : MonoBehaviour
 
     private BoardEvent boardEvent;
 
+    [SerializeField]
+    private GameObject lineMatch;
+
+    private LineRenderer lineComponent;
+
     private void Awake()
     {
+        lineComponent = lineMatch.GetComponent<LineRenderer>();
+
         boardEvent = BoardEvent.Instance.GetComponent<BoardEvent>();
 
         boardInstance = this;
@@ -210,6 +217,10 @@ public class BoardManager : MonoBehaviour
 
         if(newPiece.Type == ePieceType.SPECIAL && !constainSpecial)
         {
+            if (matchList.Count == 0)
+            {
+                lineMatch.SetActive(true);
+            }
             AddToMatchList(newPiece);
             constainSpecial = true;
             return;
@@ -218,6 +229,8 @@ public class BoardManager : MonoBehaviour
         if (matchList.Count == 0)
         {
             AddToMatchList(newPiece);
+
+            lineMatch.SetActive(true);
 
             if (newPiece.Type == ePieceType.NORMALCAKE)
             {
@@ -266,7 +279,16 @@ public class BoardManager : MonoBehaviour
                 this.constainSpecial = false;
             }
             matchList.Remove(newPiece);
-            newPiece.transform.localScale = new Vector3(1, 1, 1);
+            RemoveLinePoint();
+            if (newPiece.Type != ePieceType.SPECIAL)
+            {
+                newPiece.transform.localScale = new Vector3(1, 1, 1);
+            }
+            else
+            {
+                newPiece.transform.localScale = new Vector3(0.6f, 0.6f, 1);
+            }
+                
             Debug.Log("remove piece");
             return;
         }
@@ -276,7 +298,16 @@ public class BoardManager : MonoBehaviour
     private void AddToMatchList(GamePiece newPiece)
     {
         matchList.Add(newPiece);
-        newPiece.transform.localScale = new Vector3(1.1f, 1.1f, 1);
+        AddLinePoint(newPiece.transform.position);
+        if (newPiece.Type != ePieceType.SPECIAL)
+        {
+            newPiece.transform.localScale = new Vector3(1.1f, 1.1f, 1);
+        }
+        else
+        {
+            newPiece.transform.localScale = new Vector3(0.75f, 0.75f, 1);
+        }
+            
     }
 
 
@@ -284,6 +315,9 @@ public class BoardManager : MonoBehaviour
     {
         int specialValue;
         int specialIndex;
+
+        ResetLine();
+        lineMatch.SetActive(false);
 
         if (matchList.Count < 2)
         {
@@ -331,6 +365,23 @@ public class BoardManager : MonoBehaviour
             SpawnNewPiece(boardIndex, ePieceType.EMPTY);
         }
     }
+
+    private void AddLinePoint(Vector2 matchpoint)
+    {
+        lineComponent.positionCount++;
+        lineComponent.SetPosition(lineComponent.positionCount - 1, matchpoint); 
+    }
+
+    private void RemoveLinePoint()
+    {
+        lineComponent.positionCount--;
+    }
+
+    private void ResetLine()
+    {
+        lineComponent.positionCount = 0;
+    }
+
 
     public GamePiece SpawnSpecialPiece(int boardIndex, int value)
     {
@@ -437,6 +488,8 @@ public class BoardManager : MonoBehaviour
 
     private bool IsSameCakeType(GamePiece piece1, CakePiece.CakeType cakeType)
     {
+        if (piece1.Type != ePieceType.NORMALCAKE)
+            return false;
         if (piece1.CakeComponent.Type == this.listCakeType)
             return true;
         else
