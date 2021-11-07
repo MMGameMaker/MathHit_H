@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class BoardManager : MonoBehaviour
 {
-    private GameManager gameManager;
 
     public static BoardManager boardInstance;
     
@@ -69,17 +68,23 @@ public class BoardManager : MonoBehaviour
 
     private BoardEvent boardEvent;
 
+    [SerializeField]
+    private LineRenderer lineMatch;
 
     private void Awake()
     {
-        boardInstance = this;
+        GameManager.Instance.OnGameStateChange += ChangeBoardActive;
 
-        boardEvent = BoardEvent.Instance.GetComponent<BoardEvent>();
+        BoardEvent.Instance.BoardStateChangeHandle += OnBoardSateChange;
+
+        boardInstance = this;
         
         boardSize = xDim * yDim;
 
         pieces = new GamePiece[boardSize];
 
+        
+        // create piecetypeDict include type and gameobjectprefab
         for (int i = 0; i < piecePrefabs.Length; i++)
         {
             if (!piecePrefabDict.ContainsKey(piecePrefabs[i].type))
@@ -88,19 +93,12 @@ public class BoardManager : MonoBehaviour
                 Debug.Log("add prefab!");
             }
         }
-
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        GameManager.Instance.OnGameStateChange += ChangeBoardActive;
-
-        gameManager = GameManager.Instance.transform.GetComponent<GameManager>();
-
-        BoardEvent.BoardStateChangeHandler += OnBoardSateChange;
-
-        boardEvent.CurrentBoardSate = BoardEvent.eBoardState.INIT;
+        BoardEvent.Instance.CurrentBoardSate = BoardEvent.eBoardState.INIT;
     }
 
     // Update is called once per frame
@@ -111,15 +109,19 @@ public class BoardManager : MonoBehaviour
 
     public void ChangeBoardActive(GameManager.eGameSates currentSate, GameManager.eGameSates lastState)
     {
-        if(currentSate == GameManager.eGameSates.BATTLE_STARTED)
+        switch (currentSate)
         {
-            this.gameObject.SetActive(true);
+            case GameManager.eGameSates.IDLE:
+                this.gameObject.SetActive(false);
+                break;
+            case GameManager.eGameSates.GAME_STARTED:
+                this.gameObject.SetActive(true);
+                break;
+            case GameManager.eGameSates.GAME_OVER:
+                this.gameObject.SetActive(false);
+                break;
         }
-        else
-            this.gameObject.SetActive(false);
     }
-
-
 
     public void OnBoardSateChange(BoardEvent.eBoardState currentState)
     {
@@ -128,28 +130,17 @@ public class BoardManager : MonoBehaviour
             case BoardEvent.eBoardState.INIT:
                 InitNewBoard();
                 break;
-
-            case BoardEvent.eBoardState.LOADING:
-                this.gameObject.SetActive(false);
+            case BoardEvent.eBoardState.ISMATCHING:
                 break;
-
-            case BoardEvent.eBoardState.STARTED:
-                this.gameObject.SetActive(true);
+            case BoardEvent.eBoardState.WAITING_HIT:
                 break;
-
-            case BoardEvent.eBoardState.MATCHING_A_TYPE:
-
+            case BoardEvent.eBoardState.NORMAL:
                 break;
-
-            case BoardEvent.eBoardState.MATCHFINISHED:
-                break;
-
-            case BoardEvent.eBoardState.END:
-                break;
-
         }
     }
 
+
+    #region Init and spawn new Board
     private void InitNewBoard()
     {
         // spawn background cells
@@ -172,21 +163,190 @@ public class BoardManager : MonoBehaviour
             pieces[i].CakeComponent.SetType((CakePiece.CakeType)Random.Range(0, pieces[i].CakeComponent.NumCakeType));
         }
     }
+    #endregion
+
+
+    #region Matching Clearing and reFilling GamePieces
+    // Check and update MatchList when mouse focus to a gamepiece
+    public void UpdateMatchList(GamePiece newPiece)
+    {
+        // return if is not matching a list
+        if (!this.IsMatching)
+            return;
+
+        // return if board is still filling
+        if (this.isFilling)
+            return;
+
+        //Check for unmatch last piece in list
+        if (matchList.Count > 1 && newPiece == matchList[matchList.Count - 2])
+        {
+            if (matchList[matchList.Count - 1].Type == ePieceType.SPECIAL)
+            {
+                this.constainSpecial = false;
+            }
+
+            matchList.Remove(matchList[matchList.Count - 1]);
+
+            lineMatch.positionCount--;
+
+            Debug.Log("remove piece");
+            return;
+        }
+
+        // Check if the newpiece is a specical type, add to list if the MatchList isn't contain a special piece before.
+        if (newPiece.Type == ePieceType.SPECIAL && !constainSpecial)
+        {
+            AddToMatchList(newPiece);
+            constainSpecial = true;
+            return;
+        }
+        else if(newPiece.Type == ePieceType.SPECIAL && constainSpecial)
+        {
+            return;
+        }
+
+        // Check the the first matchlist component
+        if (matchList.Count == 0)
+        {
+            AddToMatchList(newPiece);
+            if (newPiece.Type == ePieceType.NORMALCAKE)
+            {
+                listCakeType = newPiece.CakeComponent.Type;
+                MatchingSuggest();
+            }
+            return;
+        }
+
+        // Check the the seconde matchlist component to set matchlist type
+        if (matchList.Count == 1)
+        {
+            if (matchList[0].Type == ePieceType.NORMALCAKE)
+            {
+                if (IsNeighbor(newPiece, matchList[matchList.Count - 1]) && IsSameCakeType(newPiece, listCakeType) && !matchList.Contains(newPiece))
+                {
+                    AddToMatchList(newPiece);
+                    return;
+                }
+            }
+            else if (matchList[0].Type == ePieceType.SPECIAL && IsNeighbor(newPiece, matchList[matchList.Count - 1]))
+            {
+                listCakeType = newPiece.CakeComponent.Type;
+                MatchingSuggest();
+                AddToMatchList(newPiece);
+                return;
+            }   
+        }
+
+        // Normal Check for the next matchlist from thirth
+        if (IsNeighbor(newPiece, matchList[matchList.Count - 1]) && IsSameCakeType(newPiece, listCakeType) && !matchList.Contains(newPiece))
+        {
+            AddToMatchList(newPiece);
+            Debug.Log("add piece");
+            return;
+        }
+        return;
+    }
+
+
+    public void StartMatching()
+    {
+        this.isMatching = true;
+        matchList.Clear();
+        Debug.Log("start matching!");
+    }
+
+    private void AddToMatchList(GamePiece newPiece)
+    {
+        matchList.Add(newPiece);
+
+        // add line position while matching
+        lineMatch.positionCount++;
+        lineMatch.SetPosition(lineMatch.positionCount - 1, newPiece.transform.position);
+        Debug.Log("Add a piece to list!");
+    }
+
+
+    public void FinishMatch()
+    {
+        int specialValue;
+        int specialIndex;
+
+        if (matchList.Count < 2)
+        {
+            matchList.Clear();
+        }
+
+        // Clear rest of pieces in match list
+        ClearMatchListPieces();
+
+        // clear line match
+        lineMatch.positionCount = 0;
+
+        // Check for creating a special Piece
+        if (matchList.Count >= 4 && !constainSpecial)
+        {
+            specialValue = matchList.Count - 1;
+            specialIndex = matchList[matchList.Count - 1].BoardIndex;
+            Destroy(pieces[specialIndex].gameObject);
+            pieces[specialIndex] = SpawnSpecialPiece(specialIndex, specialValue);
+            Debug.Log("Spawn Special Piece, value: " + specialValue);
+        }
+
+        this.isMatching = false;
+        this.constainSpecial = false;
+        StopMatchingSuggest();
+
+        // Filling empty piece 
+        StartCoroutine(Fill());
+
+        Debug.Log("finish matching!");
+    }
+
+    public void ClearMatchListPieces()
+    {
+        for (int i = 0; i < matchList.Count; i++)
+        {
+            int boardIndex = matchList[i].BoardIndex;
+
+            matchList[i].ClearableComponent.Clear();
+
+            SpawnNewPiece(boardIndex, ePieceType.EMPTY);
+        }
+    }
+
+    #endregion
 
     public void ClearBoardCake()
     {   
         for (int i = 0; i < boardSize; i++)
         {
+            if(pieces[i].Type == ePieceType.NORMALCAKE)
             Destroy(pieces[i].gameObject);
         }
     }
 
     public void MatchingSuggest()
     {
-
+        for(int i =0; i < boardSize; i++)
+        {
+            if (pieces[i].isCake())
+            {
+                pieces[i].CakeComponent.ChangeToInactiveSprite();
+            }
+        }
     }
 
-
+    public void StopMatchingSuggest()
+    {
+        for (int i = 0; i < boardSize; i++)
+        {
+            if (pieces[i].isCake())
+            {
+                pieces[i].CakeComponent.ChangeToNormalSprite();
+            }
+        }
+    }
 
 
     public IEnumerator Fill()
@@ -218,8 +378,8 @@ public class BoardManager : MonoBehaviour
                 if (pieceBelow.Type == ePieceType.EMPTY)
                 {
                     Destroy(pieceBelow.gameObject);
-                    piece.MoveableComponent.Move(pieceBelow.BoardIndex, fillTime);
                     piece.BoardIndex = i + xDim;
+                    piece.MoveableComponent.Move(piece.BoardIndex, fillTime);
                     pieces[i + xDim] = piece;
                     SpawnNewPiece(i, ePieceType.EMPTY);
                     movePiece = true;
@@ -235,13 +395,14 @@ public class BoardManager : MonoBehaviour
             {
                 Destroy(pieceBelow.gameObject);
 
-                GameObject newPiece = GameObject.Instantiate(piecePrefabDict[ePieceType.NORMALCAKE], new Vector3(GetWorldPosition(i).x, GetWorldPosition(i).y + 2, 0), Quaternion.identity);
+                GameObject newPiece = GameObject.Instantiate(piecePrefabDict[ePieceType.NORMALCAKE], new Vector3(GetWorldPosition(i).x, GetWorldPosition(i).y + 1, 0), Quaternion.identity);
                 newPiece.transform.parent = transform;
 
                 pieces[i] = newPiece.GetComponent<GamePiece>();
                 pieces[i].Init(i, this, ePieceType.NORMALCAKE);
-                pieces[i].MoveableComponent.Move(i, fillTime);
                 pieces[i].CakeComponent.SetType((CakePiece.CakeType)Random.Range(0, pieces[i].CakeComponent.NumCakeType));
+                pieces[i].MoveableComponent.Move(i, fillTime);
+                
                 movePiece = true;
             }
         }
@@ -249,137 +410,7 @@ public class BoardManager : MonoBehaviour
         return movePiece;
     }
 
-    public void UpdateMatchList(GamePiece newPiece)
-    {
-
-        if (!isMatching)
-        {
-            return;
-        }
-
-        if(newPiece.Type == ePieceType.SPECIAL && !constainSpecial)
-        {
-            AddToMatchList(newPiece);
-            constainSpecial = true;
-            return;
-        } 
-
-        if (matchList.Count == 0)
-        {
-            AddToMatchList(newPiece);
-
-            if (newPiece.Type == ePieceType.NORMALCAKE)
-            {
-                listCakeType = newPiece.CakeComponent.Type;
-                boardEvent.CurrentBoardSate = BoardEvent.eBoardState.MATCHING_A_TYPE;
-            }
-
-            Debug.Log("add first piece" + newPiece.X + " , " + newPiece.Y) ;
-            return;
-        }
-
-        if(matchList.Count == 1)
-        {
-            if(matchList[0].Type == ePieceType.NORMALCAKE)
-            {
-                if(IsNeighbor(newPiece, matchList[matchList.Count - 1]) && IsSameCakeType(newPiece, listCakeType) && !matchList.Contains(newPiece))
-                {
-                    AddToMatchList(newPiece);
-                    Debug.Log("add piece");
-                    return;
-                }
-            }
-            else if (matchList[0].Type == ePieceType.SPECIAL)
-            {
-                listCakeType = newPiece.CakeComponent.Type;
-                boardEvent.CurrentBoardSate = BoardEvent.eBoardState.MATCHING_A_TYPE;
-                AddToMatchList(newPiece);
-                return;
-            }
-
-
-        }
-
-        if (IsNeighbor(newPiece, matchList[matchList.Count - 1]) && IsSameCakeType(newPiece, listCakeType) && !matchList.Contains(newPiece))
-        {
-            AddToMatchList(newPiece);
-            Debug.Log("add piece");
-            return;
-        }
-
-        //unmatch newpiece
-        if (newPiece == matchList[matchList.Count - 1] && matchList.Count > 1)
-        {
-            if(newPiece.Type == ePieceType.SPECIAL)
-            {
-                this.constainSpecial = false;
-            }
-            matchList.Remove(newPiece);
-            newPiece.transform.localScale = new Vector3(1, 1, 1);
-            Debug.Log("remove piece");
-            return;
-        }
-        return;
-    }
-
-    private void AddToMatchList(GamePiece newPiece)
-    {
-        matchList.Add(newPiece);
-        newPiece.transform.localScale = new Vector3(1.1f, 1.1f, 1);
-    }
-
-
-    public void ResetMatchList()
-    {
-        int specialValue;
-        int specialIndex;
-
-        if (matchList.Count < 2)
-        {
-            matchList[0].transform.localScale = new Vector3(1, 1, 1);
-        }
-        else
-        {
-            ClearMatchList();
-        }
-        
-        if(matchList.Count >= 4 && !constainSpecial)
-        {
-            specialValue = matchList.Count - 1;
-            specialIndex = matchList[matchList.Count - 1].BoardIndex;
-            Destroy(pieces[specialIndex].gameObject);
-            pieces[specialIndex] = SpawnSpecialPiece(specialIndex, specialValue);
-            Debug.Log("Spawn Special Piece, value: " + specialValue);
-        }
-        
-        this.matchList.Clear();
-        this.constainSpecial = false;
-        this.isMatching = false;
-        Debug.Log("reset matchlist!");
-
-        StartCoroutine(Fill());
-
-        boardEvent.CurrentBoardSate = BoardEvent.eBoardState.MATCHFINISHED;
-
-        while (!IsHasPotentialMatch())
-        {
-            Debug.Log("There is no matchavaiable!");
-            ClearBoardCake();
-            SpawnBoard();
-        }
-    }
-
-    public void ClearMatchList()
-    {
-        for(int i = 0; i <matchList.Count; i++)
-        {
-            int boardIndex = matchList[i].BoardIndex;
-
-            matchList[i].ClearableComponent.Clear();
-
-            SpawnNewPiece(boardIndex, ePieceType.EMPTY);
-        }
-    }
+    
 
     public GamePiece SpawnSpecialPiece(int boardIndex, int value)
     {
@@ -390,12 +421,18 @@ public class BoardManager : MonoBehaviour
         return newSpecialPieces;
     }
 
+
+    //Check if board still has potential Match
     public bool IsHasPotentialMatch() 
     {
         bool hasPotentialMatch = false;
 
         for (int i = 0; i<boardSize-xDim; i++)
         {
+            if (pieces[i].Type == ePieceType.EMPTY)
+            {
+                continue;
+            }
 
             if (pieces[i].Type == ePieceType.SPECIAL)
             {
@@ -438,33 +475,19 @@ public class BoardManager : MonoBehaviour
     }
 
 
-    public void BoardActiveControll(GameManager.eGameSates gameSates)
-    {
-        if(gameSates == GameManager.eGameSates.BATTLE_STARTED)
-        {
-            this.gameObject.SetActive(true);
-        }
-        else
-        {
-            this.gameObject.SetActive(false);
-        }
-    }
-
     public Vector2 GetWorldPosition(int i)
     {
         int y = i / xDim;
 
         int x = i % xDim;
         
-        return new Vector2(transform.position.x - xDim + x*2 + 1 , transform.position.y + yDim  - y*2 - 1);
+        return new Vector2((transform.position.x - (xDim*0.5f - x - 0.5f)*4/3) , (transform.position.y + (yDim*0.5f  - y - 0.5f)*4/3));
     }
 
     private GamePiece SpawnNewPiece(int i, ePieceType type)
     {
         GameObject newpiece = GameObject.Instantiate(piecePrefabDict[type], GetWorldPosition(i), Quaternion.identity);
         newpiece.transform.parent = this.transform;
-
-//        Debug.Log("init piece!");
 
         pieces[i] = newpiece.GetComponent<GamePiece>();
         pieces[i].Init(i, this, type);
@@ -485,10 +508,10 @@ public class BoardManager : MonoBehaviour
 
     private bool IsSameCakeType(GamePiece piece1, CakePiece.CakeType cakeType)
     {
-        if (piece1.CakeComponent.Type == this.listCakeType)
+        if (piece1.CakeComponent.Type == cakeType)
             return true;
         else
             return false;
     }
-    
+
 }

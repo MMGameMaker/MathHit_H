@@ -59,6 +59,8 @@ public class CakePiece : MonoBehaviour
 
         sprite = GetComponent<SpriteRenderer>();
 
+
+        // setup caketypeSpriteDict
         caketypeSpriteDict = new Dictionary<CakeType, Sprite>();
 
         for(int i=0; i<cakeTypes.Length; i++)
@@ -69,6 +71,8 @@ public class CakePiece : MonoBehaviour
             }
         }
 
+
+        // setup inactiveCakeTypesSpriteDict
         inactiveCakeTypesSpriteDict = new Dictionary<CakeType, Sprite>();
 
         for (int i = 0; i < inactiveCakeTypes.Length; i++)
@@ -81,18 +85,6 @@ public class CakePiece : MonoBehaviour
     }
 
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public void SetType(CakeType _type)
     {
         this.type = _type;
@@ -103,21 +95,17 @@ public class CakePiece : MonoBehaviour
         }
     }
 
-    public void OnBoardStateChange(BoardEvent.eBoardState state)
+    public void ChangeToInactiveSprite()
     {
-        if (this.type == piece.BoardRef.ListCakeType)
-            return;
-        
-        if (state == BoardEvent.eBoardState.MATCHING_A_TYPE)
+        if(BoardManager.boardInstance.IsMatching && this.type != BoardManager.boardInstance.ListCakeType)
         {
-            sprite.sprite = inactiveCakeTypesSpriteDict[type];
-            this.transform.localScale = new Vector2(0.6f, 0.6f); 
+            this.sprite.sprite = inactiveCakeTypesSpriteDict[type];
         }
-        else if(state == BoardEvent.eBoardState.MATCHFINISHED)
-        {
-            sprite.sprite = caketypeSpriteDict[type];
-            this.transform.localScale = new Vector2(1, 1);
-        }
+    }
+
+    public void ChangeToNormalSprite()
+    {
+        sprite.sprite = caketypeSpriteDict[type];
     }
 
 }

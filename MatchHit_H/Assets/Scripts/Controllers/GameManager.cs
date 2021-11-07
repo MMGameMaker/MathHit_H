@@ -10,11 +10,10 @@ public class GameManager : MonoBehaviour
     [Serializable]
     public enum eGameSates
     {
-        INDIE,
-        LOADING,
-        BATTLE_STARTED,
-        GAME_WIN,
-        GAME_LOSE,
+        IDLE,
+        GAME_STARTED,
+        GAME_OVER,
+        SETTING,
     }
 
     private eGameSates currentGameState;
@@ -36,8 +35,6 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    //    public UnityEvent<eGameSates> OnGameStateChange;
-
     public delegate void OnGameStateChangeEvent(eGameSates currentSate, eGameSates lastState);
 
     public OnGameStateChangeEvent OnGameStateChange;
@@ -47,7 +44,6 @@ public class GameManager : MonoBehaviour
         get;
         private set;
     }
-
 
     private void Awake()
     {
@@ -61,6 +57,6 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     { 
-        OnGameStateChange.Invoke(eGameSates.INDIE, eGameSates.GAME_WIN);
+        OnGameStateChange.Invoke(eGameSates.IDLE, eGameSates.GAME_OVER);
     }
 }

@@ -5,7 +5,6 @@ using UnityEngine;
 public class GamePiece : MonoBehaviour
 {
     private int boardIndex;
-   
     public int BoardIndex
     {
         get { return boardIndex; }
@@ -15,7 +14,6 @@ public class GamePiece : MonoBehaviour
     public int X
     {
         get { return boardIndex % board.XDim; }
-        
     }
 
     public int Y
@@ -54,7 +52,6 @@ public class GamePiece : MonoBehaviour
     public BoardManager.ePieceType Type
     {
         get { return type; }
-
     }
 
     private BoardManager board;
@@ -74,19 +71,6 @@ public class GamePiece : MonoBehaviour
         boardEvent = BoardEvent.Instance.GetComponent<BoardEvent>();
     }
 
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public void Init(int i, BoardManager _board, BoardManager.ePieceType _type)
     {
         this.boardIndex = i;
@@ -96,30 +80,20 @@ public class GamePiece : MonoBehaviour
 
     private void OnMouseDown()
     {
-        board.IsMatching = true;
+        board.StartMatching();
         board.UpdateMatchList(this);
     }
 
     private void OnMouseEnter()
     {
         if (!board.IsMatching)
-        {
             return;
-        }
-        else
-        {
-            board.UpdateMatchList(this);
-        }        
+        board.UpdateMatchList(this);
     }
 
     private void OnMouseUp()
     {
-        if (!board.IsMatching)
-        {
-            return;
-        }
-        Debug.Log("finish matching!");
-        board.ResetMatchList();
+        board.FinishMatch();
     }
 
 
@@ -137,7 +111,5 @@ public class GamePiece : MonoBehaviour
     {
         return clearableComponent != null;
     }
-
-    
 
 }

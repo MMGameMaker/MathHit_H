@@ -3,12 +3,21 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class SettingUI : MonoBehaviour
+public class SettingUI : UIPanel
 {
     private GameManager gameManager;
 
     [SerializeField]
-    private Button SoundPlay;
+    private UIPanel idlePanel;
+
+    [SerializeField]
+    private Button homeBtn;
+
+    [SerializeField]
+    private GameObject board;
+
+    [SerializeField]
+    private GameObject settingBtn;
 
     private void Awake()
     {
@@ -17,20 +26,45 @@ public class SettingUI : MonoBehaviour
 
     private void Start()
     {
-        gameManager = GameManager.Instance.transform.GetComponent<GameManager>();
-    }
-
-    public void ExitSetting()
-    {
-        this.gameObject.SetActive(false);
+        SetupPanelPosition();
     }
 
     public void ToHomePage()
     {
- //       gameManager.OnGameStateChange.Invoke(GameManager.eGameSates.INDIE);
-        ExitSetting();
+        GameManager.Instance.CurrentState = GameManager.eGameSates.IDLE;
+        this.gameObject.SetActive(false);
     }
 
+    public override void Show()
+    {
+        base.Show();
+        settingBtn.SetActive(false);
+        homeBtn.gameObject.SetActive(true);
+        switch (GameManager.Instance.CurrentState)
+        {
+            case GameManager.eGameSates.IDLE:
+                idlePanel.Hide();
+                homeBtn.gameObject.SetActive(false);
+                break;
+            case GameManager.eGameSates.GAME_STARTED:
+                board.SetActive(false);
+                break;
+        }
+    }
 
+    public override void Hide()
+    {
+        base.Hide();
+        settingBtn.SetActive(true);
+        switch (GameManager.Instance.CurrentState)
+        {
+            case GameManager.eGameSates.IDLE:
+                idlePanel.Show();
+                break;
+            case GameManager.eGameSates.GAME_STARTED:
+                board.SetActive(true);
+                break;
+        }
+    }
 
 }

@@ -50,3 +50,6 @@ TagManager:
   - name: SpecialText
     uniqueID: 1422736237
     locked: 0
+  - name: UI
+    uniqueID: 4217879557
+    locked: 0

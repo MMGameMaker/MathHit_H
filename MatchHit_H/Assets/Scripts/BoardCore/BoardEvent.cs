@@ -10,15 +10,12 @@ public class BoardEvent : MonoBehaviour
     public enum eBoardState
     {
         INIT,
-        LOADING,
-        STARTED,
-        MATCHING_A_TYPE,
-        MATCHFINISHED,
-        END,
+        ISMATCHING,
+        WAITING_HIT,
+        NORMAL,
     }
 
     private eBoardState currentBoardState;
-    private eBoardState lastBoardState;
 
     public eBoardState CurrentBoardSate 
     {
@@ -27,7 +24,7 @@ public class BoardEvent : MonoBehaviour
         {
                 currentBoardState = value;
 
-                BoardStateChangeHandler.Invoke(currentBoardState);
+                BoardStateChangeHandle.Invoke(currentBoardState);
 
                 Debug.Log("Change boardState: " + currentBoardState) ;
         }
@@ -35,12 +32,17 @@ public class BoardEvent : MonoBehaviour
 
     public delegate void OnBoardStateChange(eBoardState currentState);
 
-    public static OnBoardStateChange BoardStateChangeHandler;
+    public OnBoardStateChange BoardStateChangeHandle;
 
     
 
     private void Awake()
     {
+        if (Instance != null & Instance != this)
+        {
+            Destroy(Instance.gameObject);
+        }
+
         Instance = this;
     }
 }
