@@ -1,0 +1,708 @@
+fileFormatVersion: 2
+guid: 4090622788c1bc14fbf54266b506bb3e
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -2432828078553928964
+    second: sactx-4096x4096-ETC2-DialogStore_WeaponGauge_Atlas-81c39788_0
+  - first:
+      213: -2952575865716659889
+    second: sactx-4096x4096-ETC2-DialogStore_WeaponGauge_Atlas-81c39788_1
+  - first:
+      213: 7112914324279121653
+    second: sactx-4096x4096-ETC2-DialogStore_WeaponGauge_Atlas-81c39788_2
+  - first:
+      213: -7867719705415205413
+    second: sactx-4096x4096-ETC2-DialogStore_WeaponGauge_Atlas-81c39788_4
+  - first:
+      213: -6827769129773104583
+    second: sactx-4096x4096-ETC2-DialogStore_WeaponGauge_Atlas-81c39788_5
+  - first:
+      213: -953945134963259178
+    second: sactx-4096x4096-ETC2-DialogStore_WeaponGauge_Atlas-81c39788_6
+  - first:
+      213: 6116475461226081963
+    second: sactx-4096x4096-ETC2-DialogStore_WeaponGauge_Atlas-81c39788_7
+  - first:
+      213: -3182449350754102733
+    second: sactx-4096x4096-ETC2-DialogStore_WeaponGauge_Atlas-81c39788_8
+  - first:
+      213: -7469211873447327035
+    second: sactx-4096x4096-ETC2-DialogStore_WeaponGauge_Atlas-81c39788_9
+  - first:
+      213: 929259982278617491
+    second: sactx-4096x4096-ETC2-DialogStore_WeaponGauge_Atlas-81c39788_10
+  - first:
+      213: 6066440556943334184
+    second: sactx-4096x4096-ETC2-DialogStore_WeaponGauge_Atlas-81c39788_11
+  - first:
+      213: 5547879878485330619
+    second: sactx-4096x4096-ETC2-DialogStore_WeaponGauge_Atlas-81c39788_12
+  - first:
+      213: 1880638505001380764
+    second: sactx-4096x4096-ETC2-DialogStore_WeaponGauge_Atlas-81c39788_13
+  - first:
+      213: 3948490907607112327
+    second: sactx-4096x4096-ETC2-DialogStore_WeaponGauge_Atlas-81c39788_14
+  - first:
+      213: -7653519056521994297
+    second: sactx-4096x4096-ETC2-DialogStore_WeaponGauge_Atlas-81c39788_15
+  - first:
+      213: 1495405652445903480
+    second: sactx-4096x4096-ETC2-DialogStore_WeaponGauge_Atlas-81c39788_16
+  - first:
+      213: -1264700750857918249
+    second: sactx-4096x4096-ETC2-DialogStore_WeaponGauge_Atlas-81c39788_17
+  - first:
+      213: -9030107846694748999
+    second: sactx-4096x4096-ETC2-DialogStore_WeaponGauge_Atlas-81c39788_18
+  - first:
+      213: -8074934659649490782
+    second: sactx-4096x4096-ETC2-DialogStore_WeaponGauge_Atlas-81c39788_19
+  - first:
+      213: 7637416426592173634
+    second: sactx-4096x4096-ETC2-DialogStore_WeaponGauge_Atlas-81c39788_20
+  - first:
+      213: 7925196911143860752
+    second: sactx-4096x4096-ETC2-DialogStore_WeaponGauge_Atlas-81c39788_21
+  - first:
+      213: -3393297545320053237
+    second: sactx-4096x4096-ETC2-DialogStore_WeaponGauge_Atlas-81c39788_22
+  - first:
+      213: 6139807959608889332
+    second: sactx-4096x4096-ETC2-DialogStore_WeaponGauge_Atlas-81c39788_23
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 128
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: iPhone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Windows Store Apps
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: sactx-4096x4096-ETC2-DialogStore_WeaponGauge_Atlas-81c39788_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 3091
+        width: 941
+        height: 1005
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cfa623290cbdc3ed0800000000000000
+      internalID: -2432828078553928964
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-4096x4096-ETC2-DialogStore_WeaponGauge_Atlas-81c39788_1
+      rect:
+        serializedVersion: 2
+        x: 947
+        y: 3613
+        width: 484
+        height: 415
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f49219fb4e75607d0800000000000000
+      internalID: -2952575865716659889
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-4096x4096-ETC2-DialogStore_WeaponGauge_Atlas-81c39788_2
+      rect:
+        serializedVersion: 2
+        x: 1607
+        y: 3587
+        width: 346
+        height: 205
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5f6d17064e526b260800000000000000
+      internalID: 7112914324279121653
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-4096x4096-ETC2-DialogStore_WeaponGauge_Atlas-81c39788_4
+      rect:
+        serializedVersion: 2
+        x: 947
+        y: 1499
+        width: 1992
+        height: 1690
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bddb266ec9e30d290800000000000000
+      internalID: -7867719705415205413
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-4096x4096-ETC2-DialogStore_WeaponGauge_Atlas-81c39788_5
+      rect:
+        serializedVersion: 2
+        x: 947
+        y: 3091
+        width: 654
+        height: 514
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9320f7bc624ee31a0800000000000000
+      internalID: -6827769129773104583
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-4096x4096-ETC2-DialogStore_WeaponGauge_Atlas-81c39788_6
+      rect:
+        serializedVersion: 2
+        x: 1607
+        y: 3091
+        width: 596
+        height: 490
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6d88d4734f7e2c2f0800000000000000
+      internalID: -953945134963259178
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-4096x4096-ETC2-DialogStore_WeaponGauge_Atlas-81c39788_7
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1493
+        width: 947
+        height: 1592
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bae26c7860612e450800000000000000
+      internalID: 6116475461226081963
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-4096x4096-ETC2-DialogStore_WeaponGauge_Atlas-81c39788_8
+      rect:
+        serializedVersion: 2
+        x: 1895
+        y: 835
+        width: 1666
+        height: 1154
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 33211a44d2ba5d3d0800000000000000
+      internalID: -3182449350754102733
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-4096x4096-ETC2-DialogStore_WeaponGauge_Atlas-81c39788_9
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 703
+        width: 941
+        height: 790
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5caca0bef57085890800000000000000
+      internalID: -7469211873447327035
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-4096x4096-ETC2-DialogStore_WeaponGauge_Atlas-81c39788_10
+      rect:
+        serializedVersion: 2
+        x: 947
+        y: 703
+        width: 942
+        height: 790
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 399e3bbc70565ec00800000000000000
+      internalID: 929259982278617491
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-4096x4096-ETC2-DialogStore_WeaponGauge_Atlas-81c39788_11
+      rect:
+        serializedVersion: 2
+        x: 1895
+        y: 547
+        width: 497
+        height: 446
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 82b51af8b83503450800000000000000
+      internalID: 6066440556943334184
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-4096x4096-ETC2-DialogStore_WeaponGauge_Atlas-81c39788_12
+      rect:
+        serializedVersion: 2
+        x: 2400
+        y: 518
+        width: 384
+        height: 386
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bbac7a50b570efc40800000000000000
+      internalID: 5547879878485330619
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-4096x4096-ETC2-DialogStore_WeaponGauge_Atlas-81c39788_13
+      rect:
+        serializedVersion: 2
+        x: 2803
+        y: 535
+        width: 346
+        height: 293
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c9b678991ce591a10800000000000000
+      internalID: 1880638505001380764
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-4096x4096-ETC2-DialogStore_WeaponGauge_Atlas-81c39788_14
+      rect:
+        serializedVersion: 2
+        x: 3225
+        y: 755
+        width: 162
+        height: 194
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 78a18ca7f8bdbc630800000000000000
+      internalID: 3948490907607112327
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-4096x4096-ETC2-DialogStore_WeaponGauge_Atlas-81c39788_15
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 1472
+        height: 697
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7cfd25ad7fc39c590800000000000000
+      internalID: -7653519056521994297
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-4096x4096-ETC2-DialogStore_WeaponGauge_Atlas-81c39788_16
+      rect:
+        serializedVersion: 2
+        x: 1209
+        y: 559
+        width: 504
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 87a3625948fb0c410800000000000000
+      internalID: 1495405652445903480
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-4096x4096-ETC2-DialogStore_WeaponGauge_Atlas-81c39788_17
+      rect:
+        serializedVersion: 2
+        x: 3155
+        y: 567
+        width: 210
+        height: 181
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7d8a1f52e51e27ee0800000000000000
+      internalID: -1264700750857918249
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-4096x4096-ETC2-DialogStore_WeaponGauge_Atlas-81c39788_18
+      rect:
+        serializedVersion: 2
+        x: 3371
+        y: 567
+        width: 156
+        height: 156
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9bcba4ac1cc9ea280800000000000000
+      internalID: -9030107846694748999
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-4096x4096-ETC2-DialogStore_WeaponGauge_Atlas-81c39788_19
+      rect:
+        serializedVersion: 2
+        x: 1208
+        y: 0
+        width: 548
+        height: 548
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2a03a1bb5b110ff80800000000000000
+      internalID: -8074934659649490782
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-4096x4096-ETC2-DialogStore_WeaponGauge_Atlas-81c39788_20
+      rect:
+        serializedVersion: 2
+        x: 1765
+        y: 0
+        width: 530
+        height: 541
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 24e72c476cd8df960800000000000000
+      internalID: 7637416426592173634
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-4096x4096-ETC2-DialogStore_WeaponGauge_Atlas-81c39788_21
+      rect:
+        serializedVersion: 2
+        x: 2301
+        y: 0
+        width: 526
+        height: 517
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 01ab0c7e994fbfd60800000000000000
+      internalID: 7925196911143860752
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-4096x4096-ETC2-DialogStore_WeaponGauge_Atlas-81c39788_22
+      rect:
+        serializedVersion: 2
+        x: 2835
+        y: 0
+        width: 329
+        height: 527
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b064ef96cd598e0d0800000000000000
+      internalID: -3393297545320053237
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-4096x4096-ETC2-DialogStore_WeaponGauge_Atlas-81c39788_23
+      rect:
+        serializedVersion: 2
+        x: 3165
+        y: 0
+        width: 530
+        height: 561
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4ff8a952fcaf43550800000000000000
+      internalID: 6139807959608889332
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

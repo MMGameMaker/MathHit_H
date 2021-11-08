@@ -71,6 +71,8 @@ public class BoardManager : MonoBehaviour
     [SerializeField]
     private LineRenderer lineMatch;
 
+    public int MatchPoint { get; private set; }
+
     private void Awake()
     {
         GameManager.Instance.OnGameStateChange += ChangeBoardActive;
@@ -130,10 +132,11 @@ public class BoardManager : MonoBehaviour
             case BoardEvent.eBoardState.INIT:
                 InitNewBoard();
                 break;
-            case BoardEvent.eBoardState.ISMATCHING:
+            case BoardEvent.eBoardState.WAITING_BATTLE_HIT:
+
+
                 break;
-            case BoardEvent.eBoardState.WAITING_HIT:
-                break;
+            
             case BoardEvent.eBoardState.NORMAL:
                 break;
         }
@@ -258,6 +261,7 @@ public class BoardManager : MonoBehaviour
     {
         this.isMatching = true;
         matchList.Clear();
+        MatchPoint = 0;
         Debug.Log("start matching!");
     }
 
@@ -268,6 +272,17 @@ public class BoardManager : MonoBehaviour
         // add line position while matching
         lineMatch.positionCount++;
         lineMatch.SetPosition(lineMatch.positionCount - 1, newPiece.transform.position);
+
+        //add matchpoint
+        if(newPiece.Type == ePieceType.NORMALCAKE)
+        {
+            MatchPoint++;
+        }
+        else if(newPiece.Type == ePieceType.SPECIAL)
+        {
+            MatchPoint += newPiece.SpecialComponent.SpecialValue;
+        }
+
         Debug.Log("Add a piece to list!");
     }
 
@@ -302,10 +317,18 @@ public class BoardManager : MonoBehaviour
         this.constainSpecial = false;
         StopMatchingSuggest();
 
+        //post match finish event
+        if (matchList.Count >=2) 
+        {
+            BattleEventDispatcher.Instance.PostEvent(EventID.EvenID.OnMatchFinish, MatchPoint);
+        }
+        
+
         // Filling empty piece 
         StartCoroutine(Fill());
 
         Debug.Log("finish matching!");
+
     }
 
     public void ClearMatchListPieces()
@@ -319,6 +342,7 @@ public class BoardManager : MonoBehaviour
             SpawnNewPiece(boardIndex, ePieceType.EMPTY);
         }
     }
+
 
     #endregion
 

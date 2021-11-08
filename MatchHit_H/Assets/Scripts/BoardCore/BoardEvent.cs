@@ -10,8 +10,7 @@ public class BoardEvent : MonoBehaviour
     public enum eBoardState
     {
         INIT,
-        ISMATCHING,
-        WAITING_HIT,
+        WAITING_BATTLE_HIT,
         NORMAL,
     }
 

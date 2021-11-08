@@ -313,10 +313,10 @@ TextureImporter:
       name: sactx-1024x2048-ETC2-ProgressBars_Common_Atlas-2a16259b_2
       rect:
         serializedVersion: 2
-        x: 96
-        y: 1412
-        width: 282
-        height: 161
+        x: 105
+        y: 1500
+        width: 62
+        height: 63
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1103,6 +1103,27 @@ TextureImporter:
       bones: []
       spriteID: 278d2bde3bc4182b0800000000000000
       internalID: -5584097727291926414
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-1024x2048-ETC2-ProgressBars_Common_Atlas-2a16259b_5
+      rect:
+        serializedVersion: 2
+        x: 105
+        y: 1422
+        width: 128
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a02f0fb0738d76bc0800000000000000
+      internalID: -3789822830473842166
       vertices: []
       indices: 
       edges: []
