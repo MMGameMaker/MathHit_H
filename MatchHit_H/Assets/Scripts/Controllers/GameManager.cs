@@ -13,7 +13,6 @@ public class GameManager : MonoBehaviour
         IDLE,
         GAME_STARTED,
         GAME_OVER,
-        SETTING,
     }
 
     private eGameSates currentGameState;

@@ -56,10 +56,6 @@ public class UIManager : MonoBehaviour
             case GameManager.eGameSates.GAME_OVER:
                 this.gameOverPanelUI.Show();
                 break;
-
-            case GameManager.eGameSates.SETTING:
-                this.settingPanelUI.Show();
-                break;
         }
 
         switch (lastState)
@@ -74,10 +70,6 @@ public class UIManager : MonoBehaviour
 
             case GameManager.eGameSates.GAME_OVER:
                 this.gameOverPanelUI.Hide();
-                break;
-
-            case GameManager.eGameSates.SETTING:
-                this.settingPanelUI.Hide();
                 break;
         }
     }
