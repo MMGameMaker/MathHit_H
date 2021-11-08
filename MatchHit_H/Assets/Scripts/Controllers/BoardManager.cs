@@ -190,6 +190,11 @@ public class BoardManager : MonoBehaviour
 
             lineMatch.positionCount--;
 
+            if(matchList.Count == 1 && matchList[0].Type == ePieceType.SPECIAL)
+            {
+                StopMatchingSuggest();
+            }
+
             Debug.Log("remove piece");
             return;
         }
