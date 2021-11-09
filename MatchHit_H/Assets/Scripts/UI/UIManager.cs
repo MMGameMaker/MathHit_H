@@ -14,7 +14,9 @@ public class UIManager : MonoBehaviour
 
     public UIPanel gameStartedPanelUI;
 
-    public UIPanel gameOverPanelUI;
+    public UIPanel gameWinPanelUI;
+
+    public UIPanel gameLosePanelUI;
 
     public UIPanel settingPanelUI;
 
@@ -54,7 +56,14 @@ public class UIManager : MonoBehaviour
                 break;
 
             case GameManager.eGameSates.GAME_OVER:
-                this.gameOverPanelUI.Show();
+                if(GameManager.Instance.GameEnd == GameManager.eGameEnd.Win)
+                {
+                    this.gameWinPanelUI.Show();
+                }
+                else if(GameManager.Instance.GameEnd == GameManager.eGameEnd.Lose)
+                {
+                    this.gameLosePanelUI.Show();
+                }
                 break;
         }
 
@@ -69,7 +78,8 @@ public class UIManager : MonoBehaviour
                 break;
 
             case GameManager.eGameSates.GAME_OVER:
-                this.gameOverPanelUI.Hide();
+                this.gameWinPanelUI.Hide();
+                this.gameLosePanelUI.Hide();
                 break;
         }
     }

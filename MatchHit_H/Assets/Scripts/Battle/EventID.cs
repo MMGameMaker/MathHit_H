@@ -7,9 +7,13 @@ public class EventID : ScriptableObject
     public enum EvenID
     {
         None = 0,
+        OnReady,
         OnMatchFinish,
         OnPlayerHit,
         OnEnemyHit,
-        OnBattelEnd,
+        OnBattleShow,
+        OnBattleEnd,
+        OnPlayerDie,
+        OnEnemyDie,
     }
 }

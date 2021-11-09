@@ -41,11 +41,6 @@ public class GameStartedPanelUI : UIPanel
         base.Hide();
     }
 
-    public void ToGameOver()
-    {
-        GameManager.Instance.CurrentState = GameManager.eGameSates.GAME_OVER;
-    }
-
     void OnPlayerHit()
     {
         enemyHealthFill.fillAmount = (float)enemy.CurHealth / (float)enemy.MaxHealth;

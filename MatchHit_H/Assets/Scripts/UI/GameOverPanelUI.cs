@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameOverPanelUI : UIPanel
 {
@@ -27,7 +28,7 @@ public class GameOverPanelUI : UIPanel
 
     public void ContinuePlaying()
     {
-        GameManager.Instance.CurrentState = GameManager.eGameSates.IDLE;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
 }

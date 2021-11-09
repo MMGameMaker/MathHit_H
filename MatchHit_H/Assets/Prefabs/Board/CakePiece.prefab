@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 7510924065210322196}
   - component: {fileID: 7510924065210322197}
   - component: {fileID: 3562899688362380760}
+  - component: {fileID: 4643388703145469911}
   m_Layer: 6
   m_Name: CakePiece
   m_TagString: Untagged
@@ -183,3 +184,22 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.8, y: 1.8}
   m_EdgeRadius: 0
+--- !u!95 &4643388703145469911
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7510924065210322192}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: e4680b039dbe96a4e881945a6a6617c6, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

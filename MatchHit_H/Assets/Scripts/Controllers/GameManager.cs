@@ -13,6 +13,21 @@ public class GameManager : MonoBehaviour
         IDLE,
         GAME_STARTED,
         GAME_OVER,
+        PAUSE,
+    }
+
+    public enum eGameEnd
+    {
+        None,
+        Win,
+        Lose,
+    }
+
+    private eGameEnd gameEnd;
+    public eGameEnd GameEnd
+    {
+        get => gameEnd;
+        set { gameEnd = value; }
     }
 
     private eGameSates currentGameState;
@@ -55,7 +70,8 @@ public class GameManager : MonoBehaviour
     }
 
     private void Start()
-    { 
+    {
+        gameEnd = eGameEnd.None;
         OnGameStateChange.Invoke(eGameSates.IDLE, eGameSates.GAME_OVER);
     }
 }

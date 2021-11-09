@@ -133,10 +133,7 @@ public class BoardManager : MonoBehaviour
                 InitNewBoard();
                 break;
             case BoardEvent.eBoardState.WAITING_BATTLE_HIT:
-
-
-                break;
-            
+                break;         
             case BoardEvent.eBoardState.NORMAL:
                 break;
         }
@@ -189,6 +186,8 @@ public class BoardManager : MonoBehaviour
                 this.constainSpecial = false;
             }
 
+            ResetEffectScale(matchList[matchList.Count - 1]);
+
             matchList.Remove(matchList[matchList.Count - 1]);
 
             lineMatch.positionCount--;
@@ -197,6 +196,7 @@ public class BoardManager : MonoBehaviour
             {
                 StopMatchingSuggest();
             }
+
 
             Debug.Log("remove piece");
             return;
@@ -283,7 +283,29 @@ public class BoardManager : MonoBehaviour
             MatchPoint += newPiece.SpecialComponent.SpecialValue;
         }
 
+        //effect scale up
+        if(newPiece.Type == ePieceType.NORMALCAKE)
+        {
+            newPiece.transform.localScale = new Vector3(0.75f, 0.75f, 0);
+        }
+        else if(newPiece.Type == ePieceType.SPECIAL)
+        {
+            newPiece.transform.localScale = new Vector3(0.4f, 0.4f, 0);
+        }
+
         Debug.Log("Add a piece to list!");
+    }
+
+    private void ResetEffectScale(GamePiece newPiece)
+    {
+        if (newPiece.Type == ePieceType.NORMALCAKE)
+        {
+            newPiece.transform.localScale = new Vector3(0.6f, 0.6f, 0);
+        }
+        else if (newPiece.Type == ePieceType.SPECIAL)
+        {
+            newPiece.transform.localScale = new Vector3(0.3f, 0.3f, 0);
+        }
     }
 
 
@@ -294,6 +316,7 @@ public class BoardManager : MonoBehaviour
 
         if (matchList.Count < 2)
         {
+            ResetEffectScale(matchList[0]);
             matchList.Clear();
         }
 

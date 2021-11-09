@@ -4,6 +4,15 @@ using UnityEngine;
 
 public class Character : MonoBehaviour
 {
+    #region pros
+
+    protected bool isAlive;
+    public bool IsAlive 
+    {
+        get => isAlive;
+        protected set { isAlive = value; }
+    }
+
     protected int maxHealth;
     public int MaxHealth 
     {
@@ -34,6 +43,9 @@ public class Character : MonoBehaviour
         get => this.damage;
         protected set { this.damage = value; }
     }
+    #endregion
+
+
 
     public virtual void TakeDame(int damageTaken)
     {
@@ -42,9 +54,11 @@ public class Character : MonoBehaviour
         if (CurHealth <= 0)
         {
             CurHealth = 0;
-            Die();
+            if (IsAlive)
+                Die();
         }
     }
+
 
     public virtual void HealthRecover (int recoverAmount)
     {
@@ -55,14 +69,14 @@ public class Character : MonoBehaviour
         }
     }
 
-    public bool IsAlive()
+    public virtual void Die()
     {
-        return curHealth > 0;
+        isAlive = false;
     }
 
-    public void Die()
+    public virtual void Init()
     {
-        BattleEventDispatcher.Instance.PostEvent(EventID.EvenID.OnBattelEnd);
+
     }
 
 }

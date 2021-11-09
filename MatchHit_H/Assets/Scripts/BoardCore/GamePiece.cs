@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -23,6 +24,13 @@ public class GamePiece : MonoBehaviour
     }
 
     private BoardEvent boardEvent;
+
+    private Collider2D colliderComponent;
+
+    public Collider2D ColliderComponent
+    {
+        get { return colliderComponent; }
+    }
 
     private ClearablePiece clearableComponent;
     public ClearablePiece ClearableComponent
@@ -69,6 +77,24 @@ public class GamePiece : MonoBehaviour
         moveableComponent = GetComponent<MoveablePiece>();
         specialComponent = GetComponent<SpecialPiece>();
         boardEvent = BoardEvent.Instance.GetComponent<BoardEvent>();
+        colliderComponent = GetComponent<Collider2D>();
+
+        BattleEventDispatcher.Instance.RegisterListener(EventID.EvenID.OnBattleShow, (param) => OnBattleShowHandler());
+        BattleEventDispatcher.Instance.RegisterListener(EventID.EvenID.OnBattleEnd, (param) => OnBattleEndHandler());
+    }
+
+    
+
+    private void OnBattleShowHandler()
+    {
+        if (isHasCollider())
+            this.colliderComponent.enabled = false;
+    }
+
+    private void OnBattleEndHandler()
+    {
+        if (isHasCollider())
+            this.colliderComponent.enabled = true;
     }
 
     public void Init(int i, BoardManager _board, BoardManager.ePieceType _type)
@@ -86,8 +112,6 @@ public class GamePiece : MonoBehaviour
 
     private void OnMouseEnter()
     {
-        if (!board.IsMatching)
-            return;
         board.UpdateMatchList(this);
     }
 
@@ -112,4 +136,8 @@ public class GamePiece : MonoBehaviour
         return clearableComponent != null;
     }
 
+    public bool isHasCollider()
+    {
+        return colliderComponent != null;
+    }
 }
