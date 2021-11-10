@@ -79,11 +79,22 @@ public class GamePiece : MonoBehaviour
         boardEvent = BoardEvent.Instance.GetComponent<BoardEvent>();
         colliderComponent = GetComponent<Collider2D>();
 
+        BattleEventDispatcher.Instance.RegisterListener(EventID.EvenID.OnReady, (param) => OnBattleReadyHandler());
         BattleEventDispatcher.Instance.RegisterListener(EventID.EvenID.OnBattleShow, (param) => OnBattleShowHandler());
         BattleEventDispatcher.Instance.RegisterListener(EventID.EvenID.OnBattleEnd, (param) => OnBattleEndHandler());
     }
 
-    
+    private void Start()
+    {
+        if (isHasCollider())
+            this.colliderComponent.enabled = false;
+    }
+
+    private void OnBattleReadyHandler()
+    {
+        if (isHasCollider())
+            this.colliderComponent.enabled = true;
+    }
 
     private void OnBattleShowHandler()
     {

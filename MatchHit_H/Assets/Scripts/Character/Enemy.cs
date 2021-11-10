@@ -22,6 +22,16 @@ public class Enemy : Character
         
     }
 
+    public override void Init()
+    {
+        maxHealth = 100;
+        curHealth = maxHealth;
+        damage = 15;
+        recoverRate = 0.5f;
+        recoverAmount = 0;
+        IsAlive = true;
+    }
+
     public void EnemyPrepare()
     {
         StartCoroutine("MoveToBattlePosition");
@@ -47,28 +57,10 @@ public class Enemy : Character
         Debug.Log("Enemy take " + damageTaken + " damages!");
     }
 
-    public override void Init()
-    {
-        maxHealth = 100;
-        curHealth = maxHealth;
-        damage = 15;
-        recoverRate = 0.5f;
-        recoverAmount = 0;
-        IsAlive = true;
-    }
-
     public override void Die()
     {
         base.Die();
         Debug.Log("Character died was Enemy!");
         BattleEventDispatcher.Instance.PostEvent(EventID.EvenID.OnEnemyDie);
- //       StartCoroutine(CharacterOut());
-    }
-
-    private IEnumerator CharacterOut()
-    {
-        yield return new WaitWhile(() => BattleController.Instance.IsBattleShowing);
-
-        this.gameObject.SetActive(false);
     }
 }

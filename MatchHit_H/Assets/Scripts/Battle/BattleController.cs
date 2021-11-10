@@ -35,6 +35,19 @@ public class BattleController : MonoBehaviour
         BattleEventDispatcher.Instance.RegisterListener(EventID.EvenID.OnMatchFinish, (param) => OnMatchingFinish((int) param));
         BattleEventDispatcher.Instance.RegisterListener(EventID.EvenID.OnPlayerDie, (param) => StartCoroutine("OnPlayerDieHandler"));
         BattleEventDispatcher.Instance.RegisterListener(EventID.EvenID.OnEnemyDie, (param) => StartCoroutine("OnEnemyDieHandler"));
+        BattleEventDispatcher.Instance.RegisterListener(EventID.EvenID.OnBattleEnd, (param) => OnBattleEndHandler());
+    }
+
+    private void OnBattleEndHandler()
+    {
+        if (GameManager.Instance.GameEnd == GameManager.eGameEnd.Win)
+        {
+            enemy.gameObject.SetActive(false);
+        }
+        else if (GameManager.Instance.GameEnd == GameManager.eGameEnd.Lose)
+        {
+            player.gameObject.SetActive(false);
+        }
     }
 
     public void OnBattleStartHandler(GameManager.eGameSates currentSate, GameManager.eGameSates lastState)
