@@ -26,7 +26,7 @@ public class Enemy : Character
     {
         maxHealth = 100;
         curHealth = maxHealth;
-        damage = 15;
+        damage = 5;
         recoverRate = 0.5f;
         recoverAmount = 0;
         IsAlive = true;

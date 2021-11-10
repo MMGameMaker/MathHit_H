@@ -56,6 +56,12 @@ public class GamePiece : MonoBehaviour
         get { return specialComponent; }
     }
 
+    private RockPiece rockComponent;
+    public RockPiece RockComponent
+    {
+        get { return rockComponent; }
+    }
+
     private BoardManager.ePieceType type;
     public BoardManager.ePieceType Type
     {
@@ -72,13 +78,18 @@ public class GamePiece : MonoBehaviour
 
     private void Awake()
     {
+        //Get Component if avaiable
         clearableComponent = GetComponent<ClearablePiece>();
         cakeComponent = GetComponent<CakePiece>();
         moveableComponent = GetComponent<MoveablePiece>();
         specialComponent = GetComponent<SpecialPiece>();
-        boardEvent = BoardEvent.Instance.GetComponent<BoardEvent>();
+        rockComponent = GetComponent<RockPiece>();
         colliderComponent = GetComponent<Collider2D>();
 
+        boardEvent = BoardEvent.Instance.GetComponent<BoardEvent>();
+        
+
+        //Register Battle event
         BattleEventDispatcher.Instance.RegisterListener(EventID.EvenID.OnReady, (param) => OnBattleReadyHandler());
         BattleEventDispatcher.Instance.RegisterListener(EventID.EvenID.OnBattleShow, (param) => OnBattleShowHandler());
         BattleEventDispatcher.Instance.RegisterListener(EventID.EvenID.OnBattleEnd, (param) => OnBattleEndHandler());
@@ -145,6 +156,11 @@ public class GamePiece : MonoBehaviour
     public bool isClearable()
     {
         return clearableComponent != null;
+    }
+
+    public bool isRock()
+    {
+        return rockComponent != null;
     }
 
     public bool isHasCollider()

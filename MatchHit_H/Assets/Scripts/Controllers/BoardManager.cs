@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class BoardManager : MonoBehaviour
 {
+    public BoadPreset boardPreset;
 
     public static BoardManager boardInstance;
     
@@ -12,6 +13,8 @@ public class BoardManager : MonoBehaviour
         EMPTY,
         NORMALCAKE,
         SPECIAL,
+        ROCK,
+        FIXED_BG,
     }
 
     [SerializeField]
@@ -143,9 +146,20 @@ public class BoardManager : MonoBehaviour
     #region Init and spawn new Board
     private void InitNewBoard()
     {
+        //Spawn fixed BG
+        if (boardPreset.fixedBGPieceList != null)
+        {
+            for (int i = 0; i < boardPreset.fixedBGPieceList.Length; i++)
+            {
+                SpawnNewPiece(boardPreset.fixedBGPieceList[i], ePieceType.FIXED_BG);
+            }
+        }
+
         // spawn background cells
         for (int i = 0; i < boardSize; i++)
         {
+            if (pieces[i] != null)
+                continue;
             GameObject pieceBG = GameObject.Instantiate(backgroundPrefab, GetWorldPosition(i), Quaternion.identity);
             pieceBG.transform.parent = this.transform;
         }
@@ -156,11 +170,26 @@ public class BoardManager : MonoBehaviour
 
     public void SpawnBoard()
     {
+        //Spawn Rock Pieces base boardPreset Config
+        if(boardPreset.rockPieceList != null)
+        {
+            for (int i = 0; i< boardPreset.rockPieceList.Length; i++)
+            {
+                SpawnNewPiece(boardPreset.rockPieceList[i], ePieceType.ROCK);
+            }
+        }
+
+        // spawn normal Cake in the rest of cell board
         for (int i = 0; i < boardSize; i++)
         {
-            SpawnNewPiece(i, ePieceType.NORMALCAKE);
+            if (pieces[i] != null)
+                continue;
+            else
+            {
+                SpawnNewPiece(i, ePieceType.NORMALCAKE);
 
-            pieces[i].CakeComponent.SetType((CakePiece.CakeType)Random.Range(0, pieces[i].CakeComponent.NumCakeType));
+                pieces[i].CakeComponent.SetType((CakePiece.CakeType)Random.Range(0, pieces[i].CakeComponent.NumCakeType));
+            }  
         }
     }
     #endregion
@@ -256,7 +285,6 @@ public class BoardManager : MonoBehaviour
         return;
     }
 
-
     public void StartMatching()
     {
         this.isMatching = true;
@@ -308,7 +336,6 @@ public class BoardManager : MonoBehaviour
         }
     }
 
-
     public void FinishMatch()
     {
         int specialValue;
@@ -345,7 +372,6 @@ public class BoardManager : MonoBehaviour
         {
             BattleEventDispatcher.Instance.PostEvent(EventID.EvenID.OnMatchFinish, MatchPoint);
         }
-        
 
         // Filling empty piece 
         StartCoroutine(Fill());
@@ -360,13 +386,57 @@ public class BoardManager : MonoBehaviour
         {
             int boardIndex = matchList[i].BoardIndex;
 
+            CheckAffectRockPiece(boardIndex);
+
             matchList[i].ClearableComponent.Clear();
 
             SpawnNewPiece(boardIndex, ePieceType.EMPTY);
         }
     }
 
+    // Check and affect if there is a rock surroud
+    public void CheckAffectRockPiece(int boardIndex)
+    {
+        // check upper piece
+        if(pieces[boardIndex].Y > 0)
+        {
+            GamePiece pieceUpper = pieces[boardIndex - xDim];
+            if (pieceUpper.Type == ePieceType.ROCK)
+            {
+                pieceUpper.RockComponent.SustainPoint--;
+            }
+        }
 
+        //check below piece
+        if(pieces[boardIndex].Y < yDim - 1)
+        {
+            GamePiece pieceLower = pieces[boardIndex + xDim];
+            if (pieceLower.Type == ePieceType.ROCK)
+            {
+                pieceLower.RockComponent.SustainPoint--;
+            }
+        }
+
+        //check left piece
+        if(pieces[boardIndex].X > 0)
+        {
+            GamePiece pieceLeft = pieces[boardIndex - 1];
+            if(pieceLeft.Type == ePieceType.ROCK)
+            {
+                pieceLeft.RockComponent.SustainPoint--;
+            }
+        }
+
+        //check right piece
+        if (pieces[boardIndex].X < xDim -1)
+        {
+            GamePiece pieceRight = pieces[boardIndex + 1];
+            if (pieceRight.Type == ePieceType.ROCK)
+            {
+                pieceRight.RockComponent.SustainPoint--;
+            }
+        }
+    }
     #endregion
 
     public void ClearBoardCake()
@@ -399,7 +469,6 @@ public class BoardManager : MonoBehaviour
             }
         }
     }
-
 
     public IEnumerator Fill()
     {
@@ -436,6 +505,55 @@ public class BoardManager : MonoBehaviour
                     SpawnNewPiece(i, ePieceType.EMPTY);
                     movePiece = true;
                 }
+                else
+                {
+                    for (int diag = -1; diag <= 1; diag++)
+                    {
+                        if (diag == 0)
+                            continue;
+
+                        int diagIndex = i + diag;
+
+                        if ((diagIndex % xDim >= 0) && (diagIndex % xDim < xDim))
+                        {
+                            GamePiece diagPiece = pieces[diagIndex + xDim];
+
+                            if(diagPiece.Type == ePieceType.EMPTY)
+                            {
+                                bool hasPieceAbove = true;
+
+                                for ( int diagAbove = diagIndex; diagAbove>=0; diagAbove -= xDim)   //
+                                {
+                                    GamePiece pieceAbove = pieces[diagAbove];
+
+                                    if (pieceAbove.isMoveabe())
+                                    {
+                                        break;
+                                    }
+                                    else if(!pieceAbove.isMoveabe() && pieceAbove.Type != ePieceType.EMPTY)
+                                    {
+                                        hasPieceAbove = false;
+                                        break;
+                                    }
+
+                                }
+
+                                if (!hasPieceAbove)
+                                {
+                                    Destroy(diagPiece.gameObject);
+                                    piece.MoveableComponent.Move(diagIndex + xDim, fillTime);
+                                    pieces[diagIndex + xDim] = piece;
+                                    SpawnNewPiece(i, ePieceType.EMPTY);
+                                    movePiece = true;
+                                    break;
+                                }
+
+                            }
+
+                        }
+
+                    }
+                }
             }
         }
 
@@ -461,8 +579,6 @@ public class BoardManager : MonoBehaviour
 
         return movePiece;
     }
-
-    
 
     public GamePiece SpawnSpecialPiece(int boardIndex, int value)
     {
@@ -536,7 +652,7 @@ public class BoardManager : MonoBehaviour
         return new Vector2((transform.position.x - (xDim*0.5f - x - 0.5f)*4/3) , (transform.position.y + (yDim*0.5f  - y - 0.5f)*4/3));
     }
 
-    private GamePiece SpawnNewPiece(int i, ePieceType type)
+    public GamePiece SpawnNewPiece(int i, ePieceType type)
     {
         GameObject newpiece = GameObject.Instantiate(piecePrefabDict[type], GetWorldPosition(i), Quaternion.identity);
         newpiece.transform.parent = this.transform;

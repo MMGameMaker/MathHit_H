@@ -53,8 +53,7 @@ public class BattleController : MonoBehaviour
     public void OnBattleStartHandler(GameManager.eGameSates currentSate, GameManager.eGameSates lastState)
     {
         if (currentSate == GameManager.eGameSates.GAME_STARTED)
-            StartCoroutine(BattlePrepare());
-            
+            StartCoroutine(BattlePrepare());    
     }
 
     private IEnumerator BattlePrepare()
@@ -70,6 +69,8 @@ public class BattleController : MonoBehaviour
         //BoardPrepare
 
         //Battleready
+
+        //Pust event battle prepare complete
         BattleEventDispatcher.Instance.PostEvent(EventID.EvenID.OnReady);
     }
 

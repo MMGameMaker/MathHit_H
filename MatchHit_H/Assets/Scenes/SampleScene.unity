@@ -811,7 +811,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.000061035156, y: -58.399994}
+  m_AnchoredPosition: {x: 0.000061035156, y: -58.399963}
   m_SizeDelta: {x: 0.0001, y: -476.4576}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &254217027
@@ -3480,6 +3480,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6cd328e77c98b7e42b618b2be9672c3d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  boardPreset: {fileID: 11400000, guid: 14abcde853458f8418a29a3e7340d2a6, type: 2}
   xDim: 6
   yDim: 6
   fillTime: 0.2
@@ -3491,6 +3492,10 @@ MonoBehaviour:
     prefab: {fileID: 7510924065210322192, guid: 66b53eb6794506c4ca3fc14cc1304ead, type: 3}
   - type: 2
     prefab: {fileID: 7342742722095772805, guid: 44faeaa97deb80c44810dd550f26c90f, type: 3}
+  - type: 3
+    prefab: {fileID: 2212511417517506199, guid: 4ba41e92cb73402498cbe93690b86778, type: 3}
+  - type: 4
+    prefab: {fileID: 6321758715999955372, guid: c7e84d75471b1b64fa33fdf7086a2c73, type: 3}
   lineMatch: {fileID: 1693920759}
 --- !u!1 &1166250290
 GameObject:

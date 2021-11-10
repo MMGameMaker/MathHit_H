@@ -20,7 +20,7 @@ public class Player : Character
     {
         maxHealth = 100;
         curHealth = maxHealth;
-        damage = 10;
+        damage = 5;
         recoverRate = 0.5f;
         recoverAmount = 5;
         isAlive = true;
