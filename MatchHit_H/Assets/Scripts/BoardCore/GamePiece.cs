@@ -74,7 +74,9 @@ public class GamePiece : MonoBehaviour
         get { return board; }
     }
 
+    public delegate void OnPieceMatched();
 
+    public OnPieceMatched OnPieceMatchedHandler;
 
     private void Awake()
     {

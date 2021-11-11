@@ -314,7 +314,7 @@ public class BoardManager : MonoBehaviour
         //effect scale up
         if(newPiece.Type == ePieceType.NORMALCAKE)
         {
-            newPiece.transform.localScale = new Vector3(0.75f, 0.75f, 0);
+            newPiece.OnPieceMatchedHandler.Invoke();
         }
         else if(newPiece.Type == ePieceType.SPECIAL)
         {

@@ -247,10 +247,10 @@ TextureImporter:
       name: FoodIcons_2
       rect:
         serializedVersion: 2
-        x: 1541
+        x: 1544
         y: 2045
-        width: 502
-        height: 515
+        width: 500
+        height: 514
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -373,10 +373,10 @@ TextureImporter:
       name: FoodIcons_8
       rect:
         serializedVersion: 2
-        x: 1541
-        y: 1546
+        x: 1548
+        y: 1552
         width: 500
-        height: 499
+        height: 500
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -394,8 +394,8 @@ TextureImporter:
       name: FoodIcons_9
       rect:
         serializedVersion: 2
-        x: 55
-        y: 1057
+        x: 26
+        y: 1060
         width: 450
         height: 450
       alignment: 0
@@ -457,9 +457,9 @@ TextureImporter:
       name: FoodIcons_12
       rect:
         serializedVersion: 2
-        x: 1572
-        y: 1025
-        width: 416
+        x: 1534
+        y: 1028
+        width: 500
         height: 515
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -541,10 +541,10 @@ TextureImporter:
       name: FoodIcons_16
       rect:
         serializedVersion: 2
-        x: 1543
+        x: 1537
         y: 513
-        width: 480
-        height: 514
+        width: 500
+        height: 515
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -625,10 +625,10 @@ TextureImporter:
       name: FoodIcons_20
       rect:
         serializedVersion: 2
-        x: 1532
+        x: 1541
         y: 0
-        width: 516
-        height: 502
+        width: 500
+        height: 515
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
