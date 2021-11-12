@@ -78,6 +78,11 @@ public class GamePiece : MonoBehaviour
 
     public OnPieceMatched OnPieceMatchedHandler;
 
+    public delegate void OnclearMatched();
+
+    public OnclearMatched OnClearMatchedHandler;
+
+
     private void Awake()
     {
         //Get Component if avaiable

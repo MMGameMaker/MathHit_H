@@ -217,6 +217,8 @@ public class BoardManager : MonoBehaviour
 
             ResetEffectScale(matchList[matchList.Count - 1]);
 
+ //           matchList[matchList.Count - 1].OnClearMatchedHandler.Invoke();
+
             matchList.Remove(matchList[matchList.Count - 1]);
 
             lineMatch.positionCount--;
@@ -312,28 +314,37 @@ public class BoardManager : MonoBehaviour
         }
 
         //effect scale up
+
+//        newPiece.OnPieceMatchedHandler.Invoke();
+
         if(newPiece.Type == ePieceType.NORMALCAKE)
         {
-            newPiece.OnPieceMatchedHandler.Invoke();
+            newPiece.CakeComponent.lightBGSprite.gameObject.SetActive(true);
+            newPiece.transform.localScale = new Vector3(0.75f, 0.75f, 0);
         }
         else if(newPiece.Type == ePieceType.SPECIAL)
         {
             newPiece.transform.localScale = new Vector3(0.4f, 0.4f, 0);
         }
+        
 
         Debug.Log("Add a piece to list!");
     }
 
     private void ResetEffectScale(GamePiece newPiece)
     {
+ //       newPiece.OnClearMatchedHandler.Invoke();
+
         if (newPiece.Type == ePieceType.NORMALCAKE)
         {
+            newPiece.CakeComponent.lightBGSprite.gameObject.SetActive(false);
             newPiece.transform.localScale = new Vector3(0.6f, 0.6f, 0);
         }
         else if (newPiece.Type == ePieceType.SPECIAL)
         {
             newPiece.transform.localScale = new Vector3(0.3f, 0.3f, 0);
         }
+        
     }
 
     public void FinishMatch()
@@ -344,6 +355,7 @@ public class BoardManager : MonoBehaviour
         if (matchList.Count < 2)
         {
             ResetEffectScale(matchList[0]);
+ //           matchList[0].OnClearMatchedHandler.Invoke();
             matchList.Clear();
         }
 

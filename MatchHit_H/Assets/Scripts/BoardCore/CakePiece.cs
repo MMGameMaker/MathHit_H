@@ -13,10 +13,6 @@ public class CakePiece : MonoBehaviour
         COLA,
         ROUNDCAKE,
     }
-
-    public Animator animator;
-
-    public AnimationClip matchedClip;
     
     [System.Serializable]
     public struct CakeSprite
@@ -58,7 +54,7 @@ public class CakePiece : MonoBehaviour
     private SpriteRenderer sprite;
 
     [SerializeField]
-    private SpriteRenderer lightBGSprite;
+    public SpriteRenderer lightBGSprite;
 
     private Dictionary<CakeType, Sprite> caketypeSpriteDict;
 
@@ -76,8 +72,6 @@ public class CakePiece : MonoBehaviour
         piece = GetComponent<GamePiece>();
 
         sprite = GetComponent<SpriteRenderer>();
-
-        animator = GetComponent<Animator>();
 
         // setup caketypeSpriteDict
         caketypeSpriteDict = new Dictionary<CakeType, Sprite>();
@@ -118,8 +112,11 @@ public class CakePiece : MonoBehaviour
     private void Start()
     {
         piece.OnPieceMatchedHandler += OnCakeMatchedHandler;
+
+        piece.OnClearMatchedHandler += OnClearMatchedHandler;
     }
 
+    
 
     public void SetType(CakeType _type)
     {
@@ -152,9 +149,15 @@ public class CakePiece : MonoBehaviour
     public void OnCakeMatchedHandler()
     {
         this.lightBGSprite.gameObject.SetActive(true);
-        animator.Play(matchedClip.name);
+
+        piece.transform.localScale = new Vector3(0.75f, 0.75f, 0);
     }
 
+    private void OnClearMatchedHandler()
+    {
+        this.lightBGSprite.gameObject.SetActive(false);
 
+        piece.transform.localScale = new Vector3(0.6f, 0.6f, 0);
+    }
 
 }

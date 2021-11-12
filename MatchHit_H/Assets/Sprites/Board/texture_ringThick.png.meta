@@ -1,31 +1,19 @@
 fileFormatVersion: 2
-guid: 0bcdd57ed870f7d4086088fad0b31baa
+guid: a77df26cce52f41468765351e482bc00
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 4193087397515559941
-    second: sactx-2048x2048-ETC2-Field_Atlas-30abc4a9_0
+      213: 2497664983111252851
+    second: texture_ringThick_0
   - first:
-      213: -3505192169755384475
-    second: sactx-2048x2048-ETC2-Field_Atlas-30abc4a9_1
+      213: -4606938187975970349
+    second: texture_ringThick_1
   - first:
-      213: -6436565969742758801
-    second: sactx-2048x2048-ETC2-Field_Atlas-30abc4a9_2
+      213: -6712144197411666832
+    second: texture_ringThick_2
   - first:
-      213: -6151860926564266820
-    second: sactx-2048x2048-ETC2-Field_Atlas-30abc4a9_3
-  - first:
-      213: -4202507474908355273
-    second: sactx-2048x2048-ETC2-Field_Atlas-30abc4a9_4
-  - first:
-      213: -448233612654341016
-    second: sactx-2048x2048-ETC2-Field_Atlas-30abc4a9_5
-  - first:
-      213: 4544520334524064381
-    second: sactx-2048x2048-ETC2-Field_Atlas-30abc4a9_6
-  - first:
-      213: -5281924023496915640
-    second: sactx-2048x2048-ETC2-Field_Atlas-30abc4a9_7
+      213: -1865269085797693200
+    second: texture_ringThick_3
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -70,7 +58,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 64
+  spritePixelsToUnits: 128
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -163,169 +151,85 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: sactx-2048x2048-ETC2-Field_Atlas-30abc4a9_0
+      name: texture_ringThick_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 1048
-        width: 496
-        height: 502
+        y: 255
+        width: 256
+        height: 257
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5040519a5c6d03a30800000000000000
-      internalID: 4193087397515559941
+      spriteID: 37b3746a11d79a220800000000000000
+      internalID: 2497664983111252851
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: sactx-2048x2048-ETC2-Field_Atlas-30abc4a9_1
+      name: texture_ringThick_1
       rect:
         serializedVersion: 2
-        x: 490
-        y: 1752
-        width: 128
-        height: 128
+        x: 255
+        y: 255
+        width: 256
+        height: 257
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 565ef3cfa4e0b5fc0800000000000000
-      internalID: -3505192169755384475
+      spriteID: 3d1b28b602ed010c0800000000000000
+      internalID: -4606938187975970349
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: sactx-2048x2048-ETC2-Field_Atlas-30abc4a9_2
+      name: texture_ringThick_2
       rect:
         serializedVersion: 2
-        x: 774
-        y: 1560
-        width: 128
-        height: 128
+        x: 0
+        y: 2
+        width: 256
+        height: 253
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f6c7d185a59bca6a0800000000000000
-      internalID: -6436565969742758801
+      spriteID: 07404183a6ca9d2a0800000000000000
+      internalID: -6712144197411666832
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: sactx-2048x2048-ETC2-Field_Atlas-30abc4a9_3
+      name: texture_ringThick_3
       rect:
         serializedVersion: 2
-        x: 305
-        y: 1754
-        width: 176
-        height: 176
+        x: 255
+        y: 0
+        width: 257
+        height: 255
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: cbc088cc41330aaa0800000000000000
-      internalID: -6151860926564266820
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: sactx-2048x2048-ETC2-Field_Atlas-30abc4a9_4
-      rect:
-        serializedVersion: 2
-        x: 1807
-        y: 1129
-        width: 120
-        height: 120
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 735e928a7b1bda5c0800000000000000
-      internalID: -4202507474908355273
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: sactx-2048x2048-ETC2-Field_Atlas-30abc4a9_5
-      rect:
-        serializedVersion: 2
-        x: 1045
-        y: 1694
-        width: 120
-        height: 120
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 864195577ed87c9f0800000000000000
-      internalID: -448233612654341016
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: sactx-2048x2048-ETC2-Field_Atlas-30abc4a9_6
-      rect:
-        serializedVersion: 2
-        x: 1821
-        y: 1416
-        width: 120
-        height: 120
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: d72a8d59a21611f30800000000000000
-      internalID: 4544520334524064381
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: sactx-2048x2048-ETC2-Field_Atlas-30abc4a9_7
-      rect:
-        serializedVersion: 2
-        x: 592
-        y: 1567
-        width: 170
-        height: 170
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 8454dd0e516d2b6b0800000000000000
-      internalID: -5281924023496915640
+      spriteID: 0f8c28a26ab3d16e0800000000000000
+      internalID: -1865269085797693200
       vertices: []
       indices: 
       edges: []
