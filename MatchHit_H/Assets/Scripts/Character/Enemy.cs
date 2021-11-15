@@ -4,16 +4,50 @@ using UnityEngine;
 
 public class Enemy : Character
 {
-
-    
     public Transform enemyBattlePos;
 
     public float timeMoveToPos;
+
+    [SerializeField]
+    private Player player;
+
+    [SerializeField]
+    private GameObject EnemyHealthDecreseTextPrefab;
+
+    public Animator enemyAnim;
+
+    int punchHash = Animator.StringToHash("Hit");
+
+    int beHitHash = Animator.StringToHash("Beaten");
+
+    int deadHash = Animator.StringToHash("Die");
+
+    int victoryHash = Animator.StringToHash("Victory");
+
+    [SerializeField]
+    private AnimationClip enemyHitAnim;
+
+    public float playHitAnimLenght;
+
+
+
+
 
     // Start is called before the first frame update
     void Start()
     {
         Init();
+
+        enemyAnim = GetComponent<Animator>();
+
+        // Register battle events listener to animation controller functions
+        BattleEventDispatcher.Instance.RegisterListener(EventID.EvenID.OnPlayerHit, (param) => OnPlayerHitAnim());
+
+        // Register TakingDamageEvent
+        BattleEventDispatcher.Instance.RegisterListener(EventID.EvenID.OnEnemyTakingDamage, (param) => OnEnemysTakeDameHandler((int)param));
+
+        playHitAnimLenght = enemyHitAnim.length;
+
     }
 
     // Update is called once per frame
@@ -63,4 +97,53 @@ public class Enemy : Character
         Debug.Log("Character died was Enemy!");
         BattleEventDispatcher.Instance.PostEvent(EventID.EvenID.OnEnemyDie);
     }
+
+    public void OnPlayerHitAnim()
+    {
+        enemyAnim.SetTrigger(punchHash);
+    }
+
+    //will be call in enemy hit Animation event
+    public void OnEnemyBeBeatenAnim()
+    {
+        enemyAnim.SetTrigger(beHitHash);
+    }
+
+
+    //be call in BattleController script - OnBattleEndHandler()
+    public void OnEnemyDieAnim()
+    {
+        enemyAnim.SetBool(deadHash, true);
+    }
+
+
+    //be call in BattleController script - OnBattleEndHandler()
+    public void OnEnemyVictoryAnim()
+    {
+        enemyAnim.SetBool(victoryHash, true);
+    }
+
+
+    public void OnEnemysTakeDameHandler(int playerDamage)
+    {
+        TakeDame(playerDamage);
+        OnEnemyBeBeatenAnim();
+        InitHealthTextPop(EnemyHealthDecreseTextPrefab, this.transform.position + new Vector3(0, 5f, 0));
+    }
+
+    //
+    public void PostEnemyTakeDamageEvent()
+    {
+        BattleEventDispatcher.Instance.PostEvent(EventID.EvenID.OnPlayerTakingDamage, Damage);
+    }
+
+    private void InitHealthTextPop(GameObject textObject, Vector3 starPos)
+    {
+        GameObject newText = GameObject.Instantiate(textObject, starPos, Quaternion.identity);
+    }
+
+
+
+
+
 }

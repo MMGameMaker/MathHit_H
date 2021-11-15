@@ -20,8 +20,7 @@ public class BattleController : MonoBehaviour
         get => isBattleShowing;
     }
 
-    [SerializeField]
-    private GameObject PlayerHealthDecreseTextPrefab;
+    
 
     [SerializeField]
     private GameObject EnemyHealthDecreseTextPrefab;
@@ -42,11 +41,11 @@ public class BattleController : MonoBehaviour
     {
         if (GameManager.Instance.GameEnd == GameManager.eGameEnd.Win)
         {
-            enemy.gameObject.SetActive(false);
+            player.OnPlayerVictoryAnim();
         }
         else if (GameManager.Instance.GameEnd == GameManager.eGameEnd.Lose)
         {
-            player.gameObject.SetActive(false);
+            player.OnPlayerDieAnim();
         }
     }
 
@@ -80,8 +79,6 @@ public class BattleController : MonoBehaviour
 
         yield return new WaitWhile(() => isBattleShowing);
 
-        yield return new WaitForSeconds(0.5f);
-
         GameManager.Instance.CurrentState = GameManager.eGameSates.GAME_OVER;
     }
 
@@ -90,8 +87,6 @@ public class BattleController : MonoBehaviour
         GameManager.Instance.GameEnd = GameManager.eGameEnd.Lose;
 
         yield return new WaitWhile(() => isBattleShowing);
-
-        yield return new WaitForSeconds(0.5f);
 
         GameManager.Instance.CurrentState = GameManager.eGameSates.GAME_OVER;
     }
@@ -112,11 +107,9 @@ public class BattleController : MonoBehaviour
 
         while(_hitTimes > 0)
         {
-            InitHealthTextPop(EnemyHealthDecreseTextPrefab, enemy.transform.position + new Vector3(0, 0.1f, 0));
-            enemy.TakeDame(player.Damage);
             BattleEventDispatcher.Instance.PostEvent(EventID.EvenID.OnPlayerHit);
             _hitTimes--;
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(player.playHitAnimLenght);
         }
 
         IsAttacking = false;
@@ -133,21 +126,15 @@ public class BattleController : MonoBehaviour
 
         while (_hitTimes > 0)
         {
-            player.TakeDame(enemy.Damage);
-            InitHealthTextPop(PlayerHealthDecreseTextPrefab, player.transform.position + new Vector3(0, 0.1f, 0));
             BattleEventDispatcher.Instance.PostEvent(EventID.EvenID.OnEnemyHit);
             _hitTimes--;
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(enemy.playHitAnimLenght);
         }
 
         IsAttacking = false;
     }
 
-    private void InitHealthTextPop(GameObject textObject, Vector3 starPos)
-    {
-        GameObject newText = GameObject.Instantiate(textObject, starPos, Quaternion.identity);
-    }
-
+    
 
     public IEnumerator BattleShow(int matchPoint)
     {
