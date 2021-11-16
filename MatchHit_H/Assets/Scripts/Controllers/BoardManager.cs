@@ -2,6 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public class MatchingFinishMessge
+{
+    public int matchPoint;
+    public int specialPoint;
+}
+
+
 public class BoardManager : MonoBehaviour
 {
     public BoadPreset boardPreset;
@@ -75,6 +82,8 @@ public class BoardManager : MonoBehaviour
     private LineRenderer lineMatch;
 
     public int MatchPoint { get; private set; }
+
+    public int SpecialPoint { get; private set; }
 
     private void Awake()
     {
@@ -292,6 +301,7 @@ public class BoardManager : MonoBehaviour
         this.isMatching = true;
         matchList.Clear();
         MatchPoint = 0;
+        SpecialPoint = 0;
         Debug.Log("start matching!");
     }
 
@@ -310,7 +320,7 @@ public class BoardManager : MonoBehaviour
         }
         else if(newPiece.Type == ePieceType.SPECIAL)
         {
-            MatchPoint += newPiece.SpecialComponent.SpecialValue;
+            SpecialPoint = newPiece.SpecialComponent.SpecialValue;
         }
 
         //effect scale up
@@ -320,13 +330,12 @@ public class BoardManager : MonoBehaviour
         if(newPiece.Type == ePieceType.NORMALCAKE)
         {
             newPiece.CakeComponent.lightBGSprite.gameObject.SetActive(true);
-            newPiece.transform.localScale = new Vector3(0.75f, 0.75f, 0);
+            newPiece.transform.localScale = new Vector3(0.66f, 0.66f, 0);
         }
         else if(newPiece.Type == ePieceType.SPECIAL)
         {
-            newPiece.transform.localScale = new Vector3(0.4f, 0.4f, 0);
+            newPiece.transform.localScale = new Vector3(0.36f, 0.36f, 0);
         }
-        
 
         Debug.Log("Add a piece to list!");
     }
@@ -379,10 +388,16 @@ public class BoardManager : MonoBehaviour
         this.constainSpecial = false;
         StopMatchingSuggest();
 
-        //post match finish event
+        //post match finish event include MatchPoint and Special Point
         if (matchList.Count >=2) 
         {
-            BattleEventDispatcher.Instance.PostEvent(EventID.EvenID.OnMatchFinish, MatchPoint);
+            // create match message
+            var matchMessage = new MatchingFinishMessge();
+            matchMessage.matchPoint = MatchPoint;
+            matchMessage.specialPoint = SpecialPoint;
+            
+            // post event
+            BattleEventDispatcher.Instance.PostEvent(EventID.EvenID.OnMatchFinish, matchMessage);
         }
 
         // Filling empty piece 

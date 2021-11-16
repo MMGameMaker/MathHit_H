@@ -27,8 +27,8 @@ public class GameStartedPanelUI : UIPanel
     void Start()
     {
         SetupPanelPosition();
-        BattleEventDispatcher.Instance.RegisterListener(EventID.EvenID.OnPlayerHit, (param) => OnPlayerHit());
-        BattleEventDispatcher.Instance.RegisterListener(EventID.EvenID.OnEnemyHit, (param) => OnEnemyHit());
+        BattleEventDispatcher.Instance.RegisterListener(EventID.EvenID.OnEnemyTakingDamage, (param) => OnEnemyTakeDamage());
+        BattleEventDispatcher.Instance.RegisterListener(EventID.EvenID.OnPlayerTakingDamage, (param) => OnPlayerTakeDamage());
     }
 
     public override void Show()
@@ -41,12 +41,12 @@ public class GameStartedPanelUI : UIPanel
         base.Hide();
     }
 
-    void OnPlayerHit()
+    void OnEnemyTakeDamage()
     {
         enemyHealthFill.fillAmount = (float)enemy.CurHealth / (float)enemy.MaxHealth;
     }
 
-    void OnEnemyHit()
+    void OnPlayerTakeDamage()
     {
         playerHealthFill.fillAmount = (float)player.CurHealth / (float)player.MaxHealth;
     }

@@ -36,11 +36,9 @@ public class HealthTextPop : MonoBehaviour
         if (animator)
         {
             animator.Play(popUpAnimation.name);
-
-            yield return new WaitForSeconds(popUpAnimation.length);
-
-            Destroy(this.gameObject);
         }
+        yield return new WaitForSeconds(0.3f);
 
+        Destroy(this.gameObject);
     }
 }

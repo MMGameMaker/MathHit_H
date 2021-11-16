@@ -19,7 +19,6 @@ public class BattleController : MonoBehaviour
     {
         get => isBattleShowing;
     }
-
     
 
     [SerializeField]
@@ -31,7 +30,7 @@ public class BattleController : MonoBehaviour
         GameManager.Instance.OnGameStateChange += OnBattleStartHandler;
 
         // Add Listener to Battle Events
-        BattleEventDispatcher.Instance.RegisterListener(EventID.EvenID.OnMatchFinish, (param) => OnMatchingFinish((int) param));
+        BattleEventDispatcher.Instance.RegisterListener(EventID.EvenID.OnMatchFinish, (param) => OnMatchingFinish((object) param));
         BattleEventDispatcher.Instance.RegisterListener(EventID.EvenID.OnPlayerDie, (param) => StartCoroutine("OnPlayerDieHandler"));
         BattleEventDispatcher.Instance.RegisterListener(EventID.EvenID.OnEnemyDie, (param) => StartCoroutine("OnEnemyDieHandler"));
         BattleEventDispatcher.Instance.RegisterListener(EventID.EvenID.OnBattleEnd, (param) => OnBattleEndHandler());
@@ -41,11 +40,13 @@ public class BattleController : MonoBehaviour
     {
         if (GameManager.Instance.GameEnd == GameManager.eGameEnd.Win)
         {
+            enemy.OnEnemyDieAnim();
             player.OnPlayerVictoryAnim();
         }
         else if (GameManager.Instance.GameEnd == GameManager.eGameEnd.Lose)
         {
             player.OnPlayerDieAnim();
+            enemy.OnEnemyVictoryAnim();
         }
     }
 
@@ -97,19 +98,31 @@ public class BattleController : MonoBehaviour
         
     }
 
-    private IEnumerator PlayerAttack(int hitTimes)
+    private IEnumerator PlayerAttack(object para)
     {
         if (!player.IsAlive)
             yield break;
 
-        IsAttacking = true;
-        int _hitTimes = hitTimes;
+        var message = para as MatchingFinishMessge;
+        int _normalHitTimes = message.matchPoint;
+        int _specialHitValue = message.specialPoint;
 
-        while(_hitTimes > 0)
+        IsAttacking = true;
+
+        while(_normalHitTimes > 0)
         {
             BattleEventDispatcher.Instance.PostEvent(EventID.EvenID.OnPlayerHit);
-            _hitTimes--;
-            yield return new WaitForSeconds(player.playHitAnimLenght);
+            enemy.TakeDame(player.Damage);
+            _normalHitTimes--;
+            yield return new WaitForSeconds(player.playHitAnimLenght + 0.1f);
+        }
+
+        if(_specialHitValue > 0)
+        {
+            BattleEventDispatcher.Instance.PostEvent(EventID.EvenID.OnSpecialHit);
+            int specialDamage = _specialHitValue * player.Damage;
+            enemy.TakeDame(specialDamage);
+            yield return new WaitForSeconds(player.specialHitAnimLenght + 0.1f);
         }
 
         IsAttacking = false;
@@ -127,22 +140,21 @@ public class BattleController : MonoBehaviour
         while (_hitTimes > 0)
         {
             BattleEventDispatcher.Instance.PostEvent(EventID.EvenID.OnEnemyHit);
+            player.TakeDame(enemy.Damage);
             _hitTimes--;
-            yield return new WaitForSeconds(enemy.playHitAnimLenght);
+            yield return new WaitForSeconds(enemy.playHitAnimLenght + 0.1f);
         }
 
         IsAttacking = false;
     }
 
-    
-
-    public IEnumerator BattleShow(int matchPoint)
+    public IEnumerator BattleShow(object para)
     {
         isBattleShowing = true;
 
         BattleEventDispatcher.Instance.PostEvent(EventID.EvenID.OnBattleShow);
 
-        StartCoroutine("PlayerAttack", matchPoint);
+        StartCoroutine("PlayerAttack", para);
 
         yield return new WaitWhile(() => IsAttacking);
 
@@ -155,8 +167,8 @@ public class BattleController : MonoBehaviour
         isBattleShowing = false;
     }
 
-    public void OnMatchingFinish (int matchPoint)
+    public void OnMatchingFinish (object para)
     {
-        StartCoroutine("BattleShow", matchPoint);
+        StartCoroutine("BattleShow", para);
     }
 }

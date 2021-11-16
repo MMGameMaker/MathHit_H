@@ -14,6 +14,7 @@ public class Enemy : Character
     [SerializeField]
     private GameObject EnemyHealthDecreseTextPrefab;
 
+    //Animator component and parameterHash
     public Animator enemyAnim;
 
     int punchHash = Animator.StringToHash("Hit");
@@ -24,13 +25,13 @@ public class Enemy : Character
 
     int victoryHash = Animator.StringToHash("Victory");
 
+    int movingHash = Animator.StringToHash("Moving");
+
+
     [SerializeField]
     private AnimationClip enemyHitAnim;
 
     public float playHitAnimLenght;
-
-
-
 
 
     // Start is called before the first frame update
@@ -41,13 +42,12 @@ public class Enemy : Character
         enemyAnim = GetComponent<Animator>();
 
         // Register battle events listener to animation controller functions
-        BattleEventDispatcher.Instance.RegisterListener(EventID.EvenID.OnPlayerHit, (param) => OnPlayerHitAnim());
+        BattleEventDispatcher.Instance.RegisterListener(EventID.EvenID.OnEnemyHit, (param) => OnEnemyHitAnim());
 
         // Register TakingDamageEvent
-        BattleEventDispatcher.Instance.RegisterListener(EventID.EvenID.OnEnemyTakingDamage, (param) => OnEnemysTakeDameHandler((int)param));
+        BattleEventDispatcher.Instance.RegisterListener(EventID.EvenID.OnEnemyTakingDamage, (param) => OnEnemyTakeDameHandler((int)param));
 
         playHitAnimLenght = enemyHitAnim.length;
-
     }
 
     // Update is called once per frame
@@ -73,16 +73,20 @@ public class Enemy : Character
 
     public IEnumerator MoveToBattlePosition()
     {
-        Vector2 starPos = transform.position;
-        Vector2 entPos = enemyBattlePos.position;
+        Vector3 starPos = transform.position;
+        Vector3 entPos = enemyBattlePos.position;
+
+        enemyAnim.SetBool(movingHash, true);
 
         for (float t = 0; t < 1 * timeMoveToPos; t += Time.deltaTime)
         {
-            this.transform.position = Vector2.Lerp(starPos, entPos, t / timeMoveToPos);
+            this.transform.position = Vector3.Lerp(starPos, entPos, t / timeMoveToPos);
             yield return 0;
         }
 
         this.transform.position = entPos;
+
+        enemyAnim.SetBool(movingHash, false);
     }
 
     public override void TakeDame(int damageTaken)
@@ -98,12 +102,12 @@ public class Enemy : Character
         BattleEventDispatcher.Instance.PostEvent(EventID.EvenID.OnEnemyDie);
     }
 
-    public void OnPlayerHitAnim()
+    public void OnEnemyHitAnim()
     {
         enemyAnim.SetTrigger(punchHash);
     }
 
-    //will be call in enemy hit Animation event
+    //will be call in player hit Animation event
     public void OnEnemyBeBeatenAnim()
     {
         enemyAnim.SetTrigger(beHitHash);
@@ -124,15 +128,14 @@ public class Enemy : Character
     }
 
 
-    public void OnEnemysTakeDameHandler(int playerDamage)
+    public void OnEnemyTakeDameHandler(int playerDamage)
     {
-        TakeDame(playerDamage);
         OnEnemyBeBeatenAnim();
         InitHealthTextPop(EnemyHealthDecreseTextPrefab, this.transform.position + new Vector3(0, 5f, 0));
     }
 
     //
-    public void PostEnemyTakeDamageEvent()
+    public void PostPlayerTakeDamageEvent()
     {
         BattleEventDispatcher.Instance.PostEvent(EventID.EvenID.OnPlayerTakingDamage, Damage);
     }

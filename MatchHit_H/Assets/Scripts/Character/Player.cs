@@ -12,7 +12,9 @@ public class Player : Character
 
     public Animator playerAnim;
 
-    int punchHash = Animator.StringToHash("Hit");
+    int hitHash = Animator.StringToHash("Hit");
+
+    int atkTypeHash = Animator.StringToHash("AtkType");
 
     int beHitHash = Animator.StringToHash("Beaten");
 
@@ -20,10 +22,17 @@ public class Player : Character
 
     int victoryHash = Animator.StringToHash("Victory");
 
+    int specialHitHash = Animator.StringToHash("SpecialHit");
+
     [SerializeField]
     private AnimationClip playerHitAnim;
 
+    [SerializeField]
+    private AnimationClip specialHitAnim;
+
     public float playHitAnimLenght;
+
+    public float specialHitAnimLenght;
 
     // Start is called before the first frame update
     void Start()
@@ -34,11 +43,14 @@ public class Player : Character
 
         // Register battle events listener to animation controller functions
         BattleEventDispatcher.Instance.RegisterListener(EventID.EvenID.OnPlayerHit, (param) => OnPlayerHitAnim());
+        BattleEventDispatcher.Instance.RegisterListener(EventID.EvenID.OnSpecialHit, (param) => OnSpecialHitAnim());
+
 
         // Register TakingDamageEvent
         BattleEventDispatcher.Instance.RegisterListener(EventID.EvenID.OnPlayerTakingDamage, (param) => OnPlayerTakeDameHandler((int) param));
 
         playHitAnimLenght = playerHitAnim.length;
+        specialHitAnimLenght = specialHitAnim.length;
     }
 
     // Update is called once per frame
@@ -72,8 +84,16 @@ public class Player : Character
 
     public void OnPlayerHitAnim()
     {
-        playerAnim.SetTrigger(punchHash);
+        playerAnim.SetFloat(atkTypeHash, (int)Random.Range(0, 4));
+        
+        playerAnim.SetTrigger(hitHash);
     }
+
+    public void OnSpecialHitAnim()
+    {
+        playerAnim.SetTrigger(specialHitHash);
+    }
+
 
     //will be call in enemy hit Animation event
     public void OnPlayerBeBeatenAnim()
@@ -95,10 +115,8 @@ public class Player : Character
         playerAnim.SetBool(victoryHash, true);
     }
 
-
     public void OnPlayerTakeDameHandler(int enemyDamage)
     {
-        TakeDame(enemyDamage);
         OnPlayerBeBeatenAnim();
         InitHealthTextPop(PlayerHealthDecreseTextPrefab, this.transform.position + new Vector3(0, 5f, 0));
     }
