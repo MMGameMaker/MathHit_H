@@ -8,10 +8,12 @@ public class EventID : ScriptableObject
     {
         None = 0,
         OnReady,
+        OnClearMatchList,
         OnMatchFinish,
         OnSpecialHit,
         OnPlayerHit,
         OnEnemyTakingDamage,
+        OnEnemyTakingSpecialDamage,
         OnEnemyHit,
         OnPlayerTakingDamage,
         OnBattleShow,

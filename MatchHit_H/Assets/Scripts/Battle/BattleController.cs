@@ -19,7 +19,6 @@ public class BattleController : MonoBehaviour
     {
         get => isBattleShowing;
     }
-    
 
     [SerializeField]
     private GameObject EnemyHealthDecreseTextPrefab;
@@ -30,7 +29,7 @@ public class BattleController : MonoBehaviour
         GameManager.Instance.OnGameStateChange += OnBattleStartHandler;
 
         // Add Listener to Battle Events
-        BattleEventDispatcher.Instance.RegisterListener(EventID.EvenID.OnMatchFinish, (param) => OnMatchingFinish((object) param));
+        BattleEventDispatcher.Instance.RegisterListener(EventID.EvenID.OnMatchFinish, (param) => OnMatchFinish((object) param));
         BattleEventDispatcher.Instance.RegisterListener(EventID.EvenID.OnPlayerDie, (param) => StartCoroutine("OnPlayerDieHandler"));
         BattleEventDispatcher.Instance.RegisterListener(EventID.EvenID.OnEnemyDie, (param) => StartCoroutine("OnEnemyDieHandler"));
         BattleEventDispatcher.Instance.RegisterListener(EventID.EvenID.OnBattleEnd, (param) => OnBattleEndHandler());
@@ -106,26 +105,49 @@ public class BattleController : MonoBehaviour
         var message = para as MatchingFinishMessge;
         int _normalHitTimes = message.matchPoint;
         int _specialHitValue = message.specialPoint;
+        float _powerUpStepTime = player.PowerUpTime / _normalHitTimes;
 
         IsAttacking = true;
 
-        while(_normalHitTimes > 0)
+        player.ShowPowerUpAnim();
+        for(int i = 0; i< _normalHitTimes; i++)
+        {
+            player.transform.localScale += new Vector3(0.05f, 0.05f, 0.05f);
+            yield return new WaitForSeconds(_powerUpStepTime);
+        }
+
+        StartCoroutine("ScaleNormalLize");
+
+        while (_normalHitTimes > 0)
         {
             BattleEventDispatcher.Instance.PostEvent(EventID.EvenID.OnPlayerHit);
             enemy.TakeDame(player.Damage);
             _normalHitTimes--;
-            yield return new WaitForSeconds(player.playHitAnimLenght + 0.1f);
+            yield return new WaitForSeconds(player.playHitAnimLenght);
         }
 
         if(_specialHitValue > 0)
         {
             BattleEventDispatcher.Instance.PostEvent(EventID.EvenID.OnSpecialHit);
             int specialDamage = _specialHitValue * player.Damage;
+            player.SpecialDamage = specialDamage;
             enemy.TakeDame(specialDamage);
-            yield return new WaitForSeconds(player.specialHitAnimLenght + 0.1f);
+            yield return new WaitForSeconds(player.specialHitAnimLenght);
         }
 
         IsAttacking = false;
+    }
+
+    private IEnumerator ScaleNormalLize()
+    {
+        Vector3 curScale = transform.localScale;
+        Vector3 normalScale = new Vector3(1,1,1);
+
+        for (float t = 0; t < player.NormalLizeTime; t += Time.deltaTime)
+        {
+            player.transform.localScale = Vector3.Lerp(curScale, normalScale, t / player.NormalLizeTime);
+            yield return 0;
+        }
     }
 
     private IEnumerator EnemyAttack()
@@ -150,6 +172,7 @@ public class BattleController : MonoBehaviour
 
     public IEnumerator BattleShow(object para)
     {
+        
         isBattleShowing = true;
 
         BattleEventDispatcher.Instance.PostEvent(EventID.EvenID.OnBattleShow);
@@ -167,7 +190,7 @@ public class BattleController : MonoBehaviour
         isBattleShowing = false;
     }
 
-    public void OnMatchingFinish (object para)
+    public void OnMatchFinish(object para)
     {
         StartCoroutine("BattleShow", para);
     }

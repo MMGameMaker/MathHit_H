@@ -82,9 +82,9 @@ TextMesh:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3294490223693544831}
-  m_Text: '- 15'
+  m_Text: 15
   m_OffsetZ: 0
-  m_CharacterSize: 0.3
+  m_CharacterSize: 0.15
   m_LineSpacing: 0
   m_Anchor: 0
   m_Alignment: 0
@@ -108,5 +108,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5fb17ed77397b954e832d5a228a5166c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 3
+  moveSpeed: 1
   popUpAnimation: {fileID: 7400000, guid: 8000a16b6c97e044fa255d289dad691f, type: 2}
+  healthText: {fileID: 3294490223693544830}

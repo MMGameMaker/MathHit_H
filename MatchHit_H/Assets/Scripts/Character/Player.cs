@@ -12,6 +12,8 @@ public class Player : Character
 
     public Animator playerAnim;
 
+    int powerUpHash = Animator.StringToHash("PowerUp");
+
     int hitHash = Animator.StringToHash("Hit");
 
     int atkTypeHash = Animator.StringToHash("AtkType");
@@ -25,12 +27,38 @@ public class Player : Character
     int specialHitHash = Animator.StringToHash("SpecialHit");
 
     [SerializeField]
+    private float powerUpTime;
+
+    public float PowerUpTime 
+    {
+        get => this.powerUpTime;
+        set { this.powerUpTime = value; }
+    }
+
+
+    [SerializeField]
+    private float normalLizeTime;
+
+    public float NormalLizeTime
+    {
+        get => this.normalLizeTime;
+    }
+
+    [SerializeField]
     private AnimationClip playerHitAnim;
+    
+    public float playHitAnimLenght;
 
     [SerializeField]
     private AnimationClip specialHitAnim;
 
-    public float playHitAnimLenght;
+    private int specialDamage;
+
+    public int SpecialDamage 
+    {
+        get => this.specialDamage;
+        set { this.specialDamage = value; }
+    }
 
     public float specialHitAnimLenght;
 
@@ -63,7 +91,7 @@ public class Player : Character
     {
         maxHealth = 100;
         curHealth = maxHealth;
-        damage = 5;
+        damage = 10;
         recoverRate = 0.5f;
         recoverAmount = 5;
         isAlive = true;
@@ -80,6 +108,12 @@ public class Player : Character
         base.Die();
         Debug.Log("Character died was Player!");
         BattleEventDispatcher.Instance.PostEvent(EventID.EvenID.OnPlayerDie);
+    }
+
+
+    public void ShowPowerUpAnim()
+    {
+        playerAnim.SetTrigger(powerUpHash);
     }
 
     public void OnPlayerHitAnim()
@@ -118,18 +152,27 @@ public class Player : Character
     public void OnPlayerTakeDameHandler(int enemyDamage)
     {
         OnPlayerBeBeatenAnim();
-        InitHealthTextPop(PlayerHealthDecreseTextPrefab, this.transform.position + new Vector3(0, 5f, 0));
+
+        InitHealthTextPop(PlayerHealthDecreseTextPrefab, this.transform.position + new Vector3(0, 2f, 0), enemyDamage);
     }
 
-    //
+    // Post event while normal hit animations play
     public void PostEnemyTakeDamageEvent()
     {
         BattleEventDispatcher.Instance.PostEvent(EventID.EvenID.OnEnemyTakingDamage, Damage);
     }
 
-    private void InitHealthTextPop(GameObject textObject, Vector3 starPos)
+    // Post event while special hit animations play
+    public void PostEnemyTakeSpecialDamageEvent()
+    {
+        BattleEventDispatcher.Instance.PostEvent(EventID.EvenID.OnEnemyTakingSpecialDamage, SpecialDamage);
+    }
+
+    private void InitHealthTextPop(GameObject textObject, Vector3 starPos, int damageTaken)
     {
         GameObject newText = GameObject.Instantiate(textObject, starPos, Quaternion.identity);
+
+        newText.GetComponent<HealthTextPop>().SetHealthText(damageTaken);
     }
 
 

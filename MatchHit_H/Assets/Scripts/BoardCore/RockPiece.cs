@@ -39,7 +39,7 @@ public class RockPiece : MonoBehaviour
     {
         _OnReceiveEventMatchFinish = (param) => OnSustainChangeHandler();
 
-        BattleEventDispatcher.Instance.RegisterListener(EventID.EvenID.OnMatchFinish, _OnReceiveEventMatchFinish);
+        BattleEventDispatcher.Instance.RegisterListener(EventID.EvenID.OnClearMatchList, _OnReceiveEventMatchFinish);
     }
 
     public void OnSustainChangeHandler()
@@ -59,7 +59,7 @@ public class RockPiece : MonoBehaviour
             default:
                 int newPieceIndex = piece.BoardIndex;
 
-                BattleEventDispatcher.Instance.RemoveListener(EventID.EvenID.OnMatchFinish, _OnReceiveEventMatchFinish);
+                BattleEventDispatcher.Instance.RemoveListener(EventID.EvenID.OnClearMatchList, _OnReceiveEventMatchFinish);
 
                 piece.ClearableComponent.Clear();
                 BoardManager.boardInstance.SpawnNewPiece(newPieceIndex, BoardManager.ePieceType.EMPTY);

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class SettingUI : UIPanel
 {
@@ -31,7 +32,7 @@ public class SettingUI : UIPanel
 
     public void ToHomePage()
     {
-        GameManager.Instance.CurrentState = GameManager.eGameSates.IDLE;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         this.gameObject.SetActive(false);
     }
 

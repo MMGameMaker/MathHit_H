@@ -98,8 +98,6 @@ public class GamePiece : MonoBehaviour
 
         //Register Battle event
         BattleEventDispatcher.Instance.RegisterListener(EventID.EvenID.OnReady, (param) => OnBattleReadyHandler());
-        BattleEventDispatcher.Instance.RegisterListener(EventID.EvenID.OnBattleShow, (param) => OnBattleShowHandler());
-        BattleEventDispatcher.Instance.RegisterListener(EventID.EvenID.OnBattleEnd, (param) => OnBattleEndHandler());
     }
 
     private void Start()
@@ -114,17 +112,7 @@ public class GamePiece : MonoBehaviour
             this.colliderComponent.enabled = true;
     }
 
-    private void OnBattleShowHandler()
-    {
-        if (isHasCollider())
-            this.colliderComponent.enabled = false;
-    }
-
-    private void OnBattleEndHandler()
-    {
-        if (isHasCollider())
-            this.colliderComponent.enabled = true;
-    }
+    
 
     public void Init(int i, BoardManager _board, BoardManager.ePieceType _type)
     {
@@ -158,6 +146,11 @@ public class GamePiece : MonoBehaviour
     public bool isCake()
     {
         return cakeComponent != null; 
+    }
+
+    public bool isSpecial()
+    {
+        return specialComponent != null;
     }
 
     public bool isClearable()

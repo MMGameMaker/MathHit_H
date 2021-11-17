@@ -26,6 +26,9 @@ TextureImporter:
   - first:
       213: -5281924023496915640
     second: sactx-2048x2048-ETC2-Field_Atlas-30abc4a9_7
+  - first:
+      213: -3664921223089828829
+    second: sactx-2048x2048-ETC2-Field_Atlas-30abc4a9_8
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -326,6 +329,27 @@ TextureImporter:
       bones: []
       spriteID: 8454dd0e516d2b6b0800000000000000
       internalID: -5281924023496915640
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-2048x2048-ETC2-Field_Atlas-30abc4a9_8
+      rect:
+        serializedVersion: 2
+        x: 1710
+        y: 525
+        width: 176
+        height: 176
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 32cc0ffa095932dc0800000000000000
+      internalID: -3664921223089828829
       vertices: []
       indices: 
       edges: []

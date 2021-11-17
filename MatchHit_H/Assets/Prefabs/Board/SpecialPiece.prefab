@@ -98,7 +98,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2144784878
 Transform:
   m_ObjectHideFlags: 0
@@ -398,6 +398,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 171642be4fd82fd40bc1dbeed0446ffd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  specialSpriteInactive: {fileID: -5281924023496915640, guid: 0bcdd57ed870f7d4086088fad0b31baa, type: 3}
   sunRayBG: {fileID: 467391157}
   rotationSpeed: 10
   sungRingBG: {fileID: 2144784879}

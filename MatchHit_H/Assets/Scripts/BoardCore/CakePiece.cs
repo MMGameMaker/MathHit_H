@@ -111,9 +111,9 @@ public class CakePiece : MonoBehaviour
 
     private void Start()
     {
-        piece.OnPieceMatchedHandler += OnCakeMatchedHandler;
+ //       piece.OnPieceMatchedHandler += OnCakeMatchedHandler;
 
-        piece.OnClearMatchedHandler += OnClearMatchedHandler;
+//        piece.OnClearMatchedHandler += OnClearMatchedHandler;
     }
 
     
@@ -135,10 +135,7 @@ public class CakePiece : MonoBehaviour
 
     public void ChangeToInactiveSprite()
     {
-        if(BoardManager.boardInstance.IsMatching && this.type != BoardManager.boardInstance.ListCakeType)
-        {
             this.sprite.sprite = inactiveCakeTypesSpriteDict[type];
-        }
     }
 
     public void ChangeToNormalSprite()
@@ -150,13 +147,28 @@ public class CakePiece : MonoBehaviour
     {
         this.lightBGSprite.gameObject.SetActive(true);
 
-        piece.transform.localScale = new Vector3(0.75f, 0.75f, 0);
+        ChangeToBigScale();
     }
 
-    private void OnClearMatchedHandler()
+    public void OnClearMatchedHandler()
     {
         this.lightBGSprite.gameObject.SetActive(false);
 
+        ChangeToNormalScale();
+    }
+
+    public void ChangeToSmallScale()
+    {
+        piece.transform.localScale = new Vector3(0.4f, 0.4f, 0);
+    }
+
+    public void ChangeToBigScale()
+    {
+        piece.transform.localScale = new Vector3(0.66f, 0.66f, 0);
+    }
+
+    public void ChangeToNormalScale()
+    {
         piece.transform.localScale = new Vector3(0.6f, 0.6f, 0);
     }
 

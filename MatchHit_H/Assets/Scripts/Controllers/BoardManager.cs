@@ -40,6 +40,7 @@ public class BoardManager : MonoBehaviour
 
     private bool isFilling = false;
 
+    private bool isBattleShow = false;
 
     [System.Serializable]
     public struct PiecePrefab
@@ -113,6 +114,8 @@ public class BoardManager : MonoBehaviour
     void Start()
     {
         BoardEvent.Instance.CurrentBoardSate = BoardEvent.eBoardState.INIT;
+        BattleEventDispatcher.Instance.RegisterListener(EventID.EvenID.OnBattleShow, (param) => OnBattleShowHandler());
+        BattleEventDispatcher.Instance.RegisterListener(EventID.EvenID.OnBattleEnd, (param) => OnBattleEndHandler());
     }
 
     // Update is called once per frame
@@ -143,10 +146,6 @@ public class BoardManager : MonoBehaviour
         {
             case BoardEvent.eBoardState.INIT:
                 InitNewBoard();
-                break;
-            case BoardEvent.eBoardState.WAITING_BATTLE_HIT:
-                break;         
-            case BoardEvent.eBoardState.NORMAL:
                 break;
         }
     }
@@ -237,7 +236,6 @@ public class BoardManager : MonoBehaviour
                 StopMatchingSuggest();
             }
 
-
             Debug.Log("remove piece");
             return;
         }
@@ -245,13 +243,16 @@ public class BoardManager : MonoBehaviour
         // Check if the newpiece is a specical type, add to list if the MatchList isn't contain a special piece before.
         if (newPiece.Type == ePieceType.SPECIAL && !constainSpecial)
         {
-            AddToMatchList(newPiece);
-            constainSpecial = true;
-            return;
-        }
-        else if(newPiece.Type == ePieceType.SPECIAL && constainSpecial)
-        {
-            return;
+            if(matchList.Count>0&&!IsNeighbor(newPiece, matchList[matchList.Count - 1]))
+            {
+                return;
+            }
+            else
+            {
+                AddToMatchList(newPiece);
+                constainSpecial = true;
+                return;
+            }
         }
 
         // Check the the first matchlist component
@@ -370,6 +371,7 @@ public class BoardManager : MonoBehaviour
 
         // Clear rest of pieces in match list
         ClearMatchListPieces();
+        BattleEventDispatcher.Instance.PostEvent(EventID.EvenID.OnClearMatchList);
 
         // clear line match
         lineMatch.positionCount = 0;
@@ -388,6 +390,9 @@ public class BoardManager : MonoBehaviour
         this.constainSpecial = false;
         StopMatchingSuggest();
 
+        // Filling empty piece 
+        StartCoroutine(Fill());
+
         //post match finish event include MatchPoint and Special Point
         if (matchList.Count >=2) 
         {
@@ -395,17 +400,14 @@ public class BoardManager : MonoBehaviour
             var matchMessage = new MatchingFinishMessge();
             matchMessage.matchPoint = MatchPoint;
             matchMessage.specialPoint = SpecialPoint;
-            
+
             // post event
             BattleEventDispatcher.Instance.PostEvent(EventID.EvenID.OnMatchFinish, matchMessage);
         }
 
-        // Filling empty piece 
-        StartCoroutine(Fill());
-
         Debug.Log("finish matching!");
-
     }
+
 
     public void ClearMatchListPieces()
     {
@@ -481,7 +483,10 @@ public class BoardManager : MonoBehaviour
         {
             if (pieces[i].isCake())
             {
-                pieces[i].CakeComponent.ChangeToInactiveSprite();
+                if(pieces[i].CakeComponent.Type != listCakeType)
+                {
+                    pieces[i].CakeComponent.ChangeToSmallScale();
+                }
             }
         }
     }
@@ -492,15 +497,62 @@ public class BoardManager : MonoBehaviour
         {
             if (pieces[i].isCake())
             {
+                pieces[i].CakeComponent.ChangeToNormalScale();
+            }
+        }
+    }
+
+    public void OnBattleShowHandler()
+    {
+        this.isBattleShow = true;
+
+        for (int i = 0; i < boardSize; i++)
+        {
+            if (pieces[i].isHasCollider())
+            {
+                pieces[i].ColliderComponent.enabled = false;
+            }
+
+            if (pieces[i].isCake())
+            {
+                pieces[i].CakeComponent.ChangeToInactiveSprite();
+                
+            }
+
+            if (pieces[i].isSpecial())
+            {
+                pieces[i].SpecialComponent.ChangeToInactiveSprite() ;
+            }
+        }
+    }
+
+
+    private void OnBattleEndHandler()
+    {
+        this.isBattleShow = false;
+
+        for (int i = 0; i < boardSize; i++)
+        {
+            if (pieces[i].isHasCollider())
+            {
+                pieces[i].ColliderComponent.enabled = true;
+            }
+
+            if (pieces[i].isCake())
+            {
                 pieces[i].CakeComponent.ChangeToNormalSprite();
+
+            }
+
+            if (pieces[i].isSpecial())
+            {
+                pieces[i].SpecialComponent.ChangeToNormalSprite();
             }
         }
     }
 
     public IEnumerator Fill()
     {
-        yield return new WaitForSeconds(0.15f);
-
         this.isFilling = true;
 
         while (FillStep())
@@ -598,6 +650,9 @@ public class BoardManager : MonoBehaviour
                 pieces[i] = newPiece.GetComponent<GamePiece>();
                 pieces[i].Init(i, this, ePieceType.NORMALCAKE);
                 pieces[i].CakeComponent.SetType((CakePiece.CakeType)Random.Range(0, pieces[i].CakeComponent.NumCakeType));
+
+                pieces[i].CakeComponent.ChangeToInactiveSprite();
+
                 pieces[i].MoveableComponent.Move(i, fillTime);
                 
                 movePiece = true;
@@ -615,7 +670,6 @@ public class BoardManager : MonoBehaviour
 
         return newSpecialPieces;
     }
-
 
     //Check if board still has potential Match
     public bool IsHasPotentialMatch() 
@@ -668,7 +722,6 @@ public class BoardManager : MonoBehaviour
         }
         return hasPotentialMatch;
     }
-
 
     public Vector2 GetWorldPosition(int i)
     {

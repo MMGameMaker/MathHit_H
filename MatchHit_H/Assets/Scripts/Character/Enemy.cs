@@ -19,6 +19,8 @@ public class Enemy : Character
 
     int punchHash = Animator.StringToHash("Hit");
 
+    int atkTypeHash = Animator.StringToHash("AtkType");
+
     int beHitHash = Animator.StringToHash("Beaten");
 
     int deadHash = Animator.StringToHash("Die");
@@ -46,6 +48,7 @@ public class Enemy : Character
 
         // Register TakingDamageEvent
         BattleEventDispatcher.Instance.RegisterListener(EventID.EvenID.OnEnemyTakingDamage, (param) => OnEnemyTakeDameHandler((int)param));
+        BattleEventDispatcher.Instance.RegisterListener(EventID.EvenID.OnEnemyTakingSpecialDamage, (param) => OnEnemyTakeDameHandler((int)param));
 
         playHitAnimLenght = enemyHitAnim.length;
     }
@@ -60,7 +63,7 @@ public class Enemy : Character
     {
         maxHealth = 100;
         curHealth = maxHealth;
-        damage = 5;
+        damage = 10;
         recoverRate = 0.5f;
         recoverAmount = 0;
         IsAlive = true;
@@ -104,6 +107,8 @@ public class Enemy : Character
 
     public void OnEnemyHitAnim()
     {
+        enemyAnim.SetFloat(atkTypeHash, (int)Random.Range(0, 2));
+
         enemyAnim.SetTrigger(punchHash);
     }
 
@@ -112,7 +117,6 @@ public class Enemy : Character
     {
         enemyAnim.SetTrigger(beHitHash);
     }
-
 
     //be call in BattleController script - OnBattleEndHandler()
     public void OnEnemyDieAnim()
@@ -127,26 +131,22 @@ public class Enemy : Character
         enemyAnim.SetBool(victoryHash, true);
     }
 
-
     public void OnEnemyTakeDameHandler(int playerDamage)
     {
         OnEnemyBeBeatenAnim();
-        InitHealthTextPop(EnemyHealthDecreseTextPrefab, this.transform.position + new Vector3(0, 5f, 0));
+        InitHealthTextPop(EnemyHealthDecreseTextPrefab, this.transform.position + new Vector3(0, 2f, 0), playerDamage);
     }
 
-    //
     public void PostPlayerTakeDamageEvent()
     {
         BattleEventDispatcher.Instance.PostEvent(EventID.EvenID.OnPlayerTakingDamage, Damage);
     }
 
-    private void InitHealthTextPop(GameObject textObject, Vector3 starPos)
+    private void InitHealthTextPop(GameObject textObject, Vector3 starPos, int damageTaken)
     {
         GameObject newText = GameObject.Instantiate(textObject, starPos, Quaternion.identity);
+
+        newText.GetComponent<HealthTextPop>().SetHealthText(damageTaken);
     }
-
-
-
-
 
 }

@@ -23,6 +23,8 @@ public class SpecialPiece : MonoBehaviour
 
     public AnimationClip matchedClip;
 
+    private SpriteRenderer sprite;
+
 
     public int SpecialValue 
     { 
@@ -40,6 +42,8 @@ public class SpecialPiece : MonoBehaviour
     private void Awake()
     {
         piece = GetComponent<GamePiece>();
+
+        sprite = GetComponent<SpriteRenderer>();
     }
 
     
@@ -48,9 +52,7 @@ public class SpecialPiece : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        piece.OnPieceMatchedHandler += OnSpecialMatchedHandler;
 
-        piece.OnClearMatchedHandler += OnClearMatchedHandler;
     }
 
     // Update is called once per frame
@@ -59,14 +61,17 @@ public class SpecialPiece : MonoBehaviour
         
     }
 
-    public void OnSpecialMatchedHandler()
+    
+    public void ChangeToInactiveSprite()
     {
-        piece.transform.localScale = new Vector3(0.4f, 0.4f, 0);
+        this.sprite.color = Color.grey;
     }
 
-    public void OnClearMatchedHandler()
+    public void ChangeToNormalSprite()
     {
-        piece.transform.localScale = new Vector3(0.3f, 0.3f, 0);
+        this.sprite.color = Color.white;
     }
+
+
 
 }
