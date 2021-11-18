@@ -35,11 +35,20 @@ public class CakePiece : MonoBehaviour
         public Sprite spriteLightBG;
     }
 
+    [System.Serializable]
+    public struct CircleBGColor
+    {
+        public CakeType type;
+        public Color circleBGColor;
+    }
+
     public CakeSprite[] cakeTypes;
 
     public CakeSpriteInactive[] inactiveCakeTypes;
 
     public CakeSpriteLightBG[] LightBGTypes;
+
+    public CircleBGColor[] circleBGTypes;
 
     private CakeType type;
 
@@ -56,16 +65,27 @@ public class CakePiece : MonoBehaviour
     [SerializeField]
     public SpriteRenderer lightBGSprite;
 
+    [SerializeField]
+    public SpriteRenderer Circle_blur;
+
     private Dictionary<CakeType, Sprite> caketypeSpriteDict;
 
     private Dictionary<CakeType, Sprite> inactiveCakeTypesSpriteDict;
 
     private Dictionary<CakeType, Sprite> LightBGTypesDict;
 
+    private Dictionary<CakeType, Color> circleBGTypesDict;
+
     public int NumCakeType
     {
         get { return cakeTypes.Length; }
     }
+
+    
+
+    [SerializeField]
+    private ParticleSystem cakePartical;
+
 
     private void Awake()
     {
@@ -107,13 +127,28 @@ public class CakePiece : MonoBehaviour
         }
 
         lightBGSprite.gameObject.SetActive(false);
+
+
+        // setup circleBGTypesDict
+        circleBGTypesDict = new Dictionary<CakeType, Color>();
+
+        for (int i = 0; i < circleBGTypes.Length; i++)
+        {
+            if (!circleBGTypesDict.ContainsKey(circleBGTypes[i].type))
+            {
+                circleBGTypesDict.Add(circleBGTypes[i].type, circleBGTypes[i].circleBGColor);
+            }
+        }
+
+        Circle_blur.gameObject.SetActive(false);
+
+        cakePartical.gameObject.SetActive(false);
+
     }
 
     private void Start()
     {
- //       piece.OnPieceMatchedHandler += OnCakeMatchedHandler;
-
-//        piece.OnClearMatchedHandler += OnClearMatchedHandler;
+        
     }
 
     
@@ -131,6 +166,12 @@ public class CakePiece : MonoBehaviour
         {
             lightBGSprite.sprite = LightBGTypesDict[_type];
         }
+
+        if (circleBGTypesDict.ContainsKey(_type))
+        {
+            Circle_blur.color = circleBGTypesDict[_type];
+        }
+
     }
 
     public void ChangeToInactiveSprite()
@@ -147,14 +188,26 @@ public class CakePiece : MonoBehaviour
     {
         this.lightBGSprite.gameObject.SetActive(true);
 
+        this.Circle_blur.gameObject.SetActive(true);
+
         ChangeToBigScale();
+
+        cakePartical.gameObject.SetActive(true);
+
+        cakePartical.Play();
     }
 
-    public void OnClearMatchedHandler()
+    public void OnCakeOutMatchedHandler()
     {
         this.lightBGSprite.gameObject.SetActive(false);
 
+        this.Circle_blur.gameObject.SetActive(false);
+
         ChangeToNormalScale();
+
+        cakePartical.gameObject.SetActive(false);
+
+        cakePartical.Stop();
     }
 
     public void ChangeToSmallScale()

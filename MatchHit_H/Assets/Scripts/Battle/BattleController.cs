@@ -109,6 +109,8 @@ public class BattleController : MonoBehaviour
 
         IsAttacking = true;
 
+        yield return new WaitForSeconds(0.5f);      //same with time to clear in clearable script => should add to gameconfig if has
+
         player.ShowPowerUpAnim();
         for(int i = 0; i< _normalHitTimes; i++)
         {

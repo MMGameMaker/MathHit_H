@@ -223,9 +223,7 @@ public class BoardManager : MonoBehaviour
                 this.constainSpecial = false;
             }
 
-            ResetEffectScale(matchList[matchList.Count - 1]);
-
- //           matchList[matchList.Count - 1].OnClearMatchedHandler.Invoke();
+            matchList[matchList.Count - 1].OnPieceOutMatchedHandler();
 
             matchList.Remove(matchList[matchList.Count - 1]);
 
@@ -300,6 +298,7 @@ public class BoardManager : MonoBehaviour
     public void StartMatching()
     {
         this.isMatching = true;
+        this.constainSpecial = false;
         matchList.Clear();
         MatchPoint = 0;
         SpecialPoint = 0;
@@ -314,12 +313,8 @@ public class BoardManager : MonoBehaviour
         lineMatch.positionCount++;
         lineMatch.SetPosition(lineMatch.positionCount - 1, newPiece.transform.position);
 
-        //add matchpoint
-        if(newPiece.Type == ePieceType.NORMALCAKE)
-        {
-            MatchPoint++;
-        }
-        else if(newPiece.Type == ePieceType.SPECIAL)
+        //add Specialpoint
+        if(newPiece.Type == ePieceType.SPECIAL)
         {
             SpecialPoint = newPiece.SpecialComponent.SpecialValue;
         }
@@ -328,32 +323,15 @@ public class BoardManager : MonoBehaviour
 
 //        newPiece.OnPieceMatchedHandler.Invoke();
 
-        if(newPiece.Type == ePieceType.NORMALCAKE)
-        {
-            newPiece.CakeComponent.lightBGSprite.gameObject.SetActive(true);
-            newPiece.transform.localScale = new Vector3(0.66f, 0.66f, 0);
-        }
-        else if(newPiece.Type == ePieceType.SPECIAL)
-        {
-            newPiece.transform.localScale = new Vector3(0.36f, 0.36f, 0);
-        }
+        newPiece.OnPieceMatchedHandler();
 
         Debug.Log("Add a piece to list!");
     }
 
     private void ResetEffectScale(GamePiece newPiece)
     {
- //       newPiece.OnClearMatchedHandler.Invoke();
 
-        if (newPiece.Type == ePieceType.NORMALCAKE)
-        {
-            newPiece.CakeComponent.lightBGSprite.gameObject.SetActive(false);
-            newPiece.transform.localScale = new Vector3(0.6f, 0.6f, 0);
-        }
-        else if (newPiece.Type == ePieceType.SPECIAL)
-        {
-            newPiece.transform.localScale = new Vector3(0.3f, 0.3f, 0);
-        }
+        newPiece.OnPieceOutMatchedHandler();
         
     }
 
@@ -364,8 +342,7 @@ public class BoardManager : MonoBehaviour
 
         if (matchList.Count < 2)
         {
-            ResetEffectScale(matchList[0]);
- //           matchList[0].OnClearMatchedHandler.Invoke();
+            matchList[0].OnPieceOutMatchedHandler();
             matchList.Clear();
         }
 
@@ -386,16 +363,22 @@ public class BoardManager : MonoBehaviour
             Debug.Log("Spawn Special Piece, value: " + specialValue);
         }
 
-        this.isMatching = false;
-        this.constainSpecial = false;
-        StopMatchingSuggest();
-
         // Filling empty piece 
         StartCoroutine(Fill());
 
         //post match finish event include MatchPoint and Special Point
         if (matchList.Count >=2) 
         {
+            if (constainSpecial)
+            {
+                MatchPoint = matchList.Count - 1;
+            }
+            else
+            {
+                MatchPoint = matchList.Count;
+                SpecialPoint = 0;
+            }
+
             // create match message
             var matchMessage = new MatchingFinishMessge();
             matchMessage.matchPoint = MatchPoint;
@@ -404,6 +387,10 @@ public class BoardManager : MonoBehaviour
             // post event
             BattleEventDispatcher.Instance.PostEvent(EventID.EvenID.OnMatchFinish, matchMessage);
         }
+
+        this.isMatching = false;
+        
+        StopMatchingSuggest();
 
         Debug.Log("finish matching!");
     }
@@ -417,7 +404,7 @@ public class BoardManager : MonoBehaviour
 
             CheckAffectRockPiece(boardIndex);
 
-            matchList[i].ClearableComponent.Clear();
+            matchList[i].OnClearMatchedHandler();
 
             SpawnNewPiece(boardIndex, ePieceType.EMPTY);
         }

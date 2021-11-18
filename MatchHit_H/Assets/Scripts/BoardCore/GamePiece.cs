@@ -74,13 +74,13 @@ public class GamePiece : MonoBehaviour
         get { return board; }
     }
 
-    public delegate void OnPieceMatched();
+    private Animator pieceAnimator;
 
-    public OnPieceMatched OnPieceMatchedHandler;
+    private int matchedHash = Animator.StringToHash("InMatchList");
 
-    public delegate void OnclearMatched();
+    private int clearMatchedHash = Animator.StringToHash("ClearMatch");
 
-    public OnclearMatched OnClearMatchedHandler;
+
 
 
     private void Awake()
@@ -92,6 +92,8 @@ public class GamePiece : MonoBehaviour
         specialComponent = GetComponent<SpecialPiece>();
         rockComponent = GetComponent<RockPiece>();
         colliderComponent = GetComponent<Collider2D>();
+
+        pieceAnimator = GetComponent<Animator>();
 
         boardEvent = BoardEvent.Instance.GetComponent<BoardEvent>();
         
@@ -111,8 +113,6 @@ public class GamePiece : MonoBehaviour
         if (isHasCollider())
             this.colliderComponent.enabled = true;
     }
-
-    
 
     public void Init(int i, BoardManager _board, BoardManager.ePieceType _type)
     {
@@ -135,6 +135,48 @@ public class GamePiece : MonoBehaviour
     private void OnMouseUp()
     {
         board.FinishMatch();
+    }
+
+    public void OnPieceMatchedHandler()
+    {
+        pieceAnimator.SetBool(matchedHash, true);
+
+        if (isCake())
+        {
+            CakeComponent.OnCakeMatchedHandler();
+        }
+
+        if (isSpecial())
+        {
+            SpecialComponent.OnSpecialMatchedHandler();
+        }
+    }
+
+    public void OnPieceOutMatchedHandler()
+    {
+        pieceAnimator.SetBool(matchedHash, false);
+
+        if (isCake())
+        {
+            CakeComponent.OnCakeOutMatchedHandler();
+        }
+
+        if (isSpecial())
+        {
+            SpecialComponent.OnSpecialOutMatchedHandler();
+        }
+    }
+
+    public void OnClearMatchedHandler()
+    {
+        if (!isClearable())
+        {
+            return;
+        }
+
+        pieceAnimator.SetBool(clearMatchedHash, true);
+
+        ClearableComponent.StartCoroutine("ClearCoroutine");
     }
 
 

@@ -11,13 +11,15 @@ public class SpecialPiece : MonoBehaviour
     private int specialValue;
 
     [SerializeField]
-    private SpriteRenderer sunRayBG;
+    private GameObject sunRayBG;
 
     [SerializeField]
     private float rotationSpeed;
 
+    private float rotateAngle;
+
     [SerializeField]
-    private SpriteRenderer sungRingBG;
+    private SpriteRenderer sunRingBG;
 
     public Animator animator;
 
@@ -58,10 +60,30 @@ public class SpecialPiece : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        this.sunRayBG.transform.rotation = Quaternion.Euler(0, 0, SetRotateAngle()) ;
     }
 
-    
+    public void OnSpecialMatchedHandler()
+    {
+        ChangeToBigScale();
+    }
+
+    public void OnSpecialOutMatchedHandler()
+    {
+        ChangeToNormalScale();
+    }
+
+    public void ChangeToBigScale()
+    {
+        piece.transform.localScale = new Vector3(0.4f, 0.4f, 0);
+    }
+
+    public void ChangeToNormalScale()
+    {
+        piece.transform.localScale = new Vector3(0.3f, 0.3f, 0);
+    }
+
+
     public void ChangeToInactiveSprite()
     {
         this.sprite.color = Color.grey;
@@ -72,6 +94,10 @@ public class SpecialPiece : MonoBehaviour
         this.sprite.color = Color.white;
     }
 
-
+    public float SetRotateAngle()
+    {
+        this.rotateAngle += rotationSpeed * Time.deltaTime;
+        return rotateAngle;
+    }
 
 }
